@@ -55,6 +55,11 @@ public class EnemyAI : EnemyBase
             animator = GetComponent<Animator>();
         }
 
+        if (animator != null)
+        {
+            animator.fireEvents = useAnimationEventDamage;
+        }
+
         pathfinding = new Pathfinding();
         waypointReachDistanceSqr = waypointReachDistance * waypointReachDistance;
 

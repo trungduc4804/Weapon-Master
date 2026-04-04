@@ -9,13 +9,12 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemyPrefabs == null || enemyPrefabs.Length == 0)
         {
-            Debug.LogWarning("No enemy prefabs in EnemySpawner!");
             return 0;
         }
 
         if (spawnPoints == null || spawnPoints.Length == 0)
         {
-            Debug.LogWarning("No spawn points in EnemySpawner!");
+            
             return 0;
         }
 

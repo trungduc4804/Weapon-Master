@@ -15,12 +15,9 @@ public class RoomTrigger : MonoBehaviour
         {
             targetRoom = room;
         }
-        else if (room != null && room != targetRoom)
-        {
-            Debug.LogWarning(
-                $"{name}: RoomTrigger.room is set to '{room.name}' but parent room is '{targetRoom.name}'. Using parent room."
-            );
-        }
+
+        // Keep serialized reference in sync without spamming warnings.
+        room = targetRoom;
     }
 
     void OnTriggerEnter2D(Collider2D other)

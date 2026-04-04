@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MeleeWeapon : WeaponBase
 {
@@ -8,10 +9,21 @@ public class MeleeWeapon : WeaponBase
     public BoxCollider2D attackCollider;
 
     private bool isAttacking = false;
+    private readonly HashSet<EnemyBase> hitEnemies = new HashSet<EnemyBase>();
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        if (attackCollider != null)
+        {
+            attackCollider.enabled = false;
+        }
+    }
 
     public override void Attack()
     {
-        if (isAttacking) return;
+        if (isAttacking || attackCollider == null) return;
 
         if (animator != null)
             animator.SetTrigger("isAttack");
@@ -23,6 +35,7 @@ public class MeleeWeapon : WeaponBase
     IEnumerator EnableCollider()
     {
         isAttacking = true;
+        hitEnemies.Clear();
 
         attackCollider.enabled = true;
         yield return new WaitForSeconds(attackDuration);
@@ -33,16 +46,23 @@ public class MeleeWeapon : WeaponBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!attackCollider.enabled) return;
+        TryDealDamage(collision);
+    }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        TryDealDamage(collision);
+    }
 
-        if (collision.CompareTag("Enemy"))
-        {
-            EnemyBase enemy = collision.GetComponent<EnemyBase>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-            }
-        }
+    private void TryDealDamage(Collider2D collision)
+    {
+        if (!isAttacking || attackCollider == null || !attackCollider.enabled) return;
+        if (!collision.CompareTag("Enemy")) return;
+
+        EnemyBase enemy = collision.GetComponentInParent<EnemyBase>();
+        if (enemy == null || hitEnemies.Contains(enemy)) return;
+
+        enemy.TakeDamage(damage);
+        hitEnemies.Add(enemy);
     }
 }

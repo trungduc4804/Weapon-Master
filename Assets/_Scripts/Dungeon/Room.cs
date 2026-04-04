@@ -22,13 +22,11 @@ public class Room : MonoBehaviour
 
     public void SetDoors(bool top, bool bottom, bool left, bool right)
     {
-        Debug.Log($"{gameObject.name}: SetDoors(top={top}, bottom={bottom}, left={left}, right={right})");
         hasTop = top;
         hasBottom = bottom;
         hasLeft = left;
         hasRight = right;
 
-        // Doors are always active, but closed if no adjacent room
     }
 
     public bool IsCleared()

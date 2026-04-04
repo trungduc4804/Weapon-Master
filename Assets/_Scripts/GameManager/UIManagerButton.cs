@@ -1,17 +1,26 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class UIManagerBottom : MonoBehaviour
 {
     [SerializeField] private GameObject settingUI;
+
+    private void OnDisable()
+    {
+        // Ensure pause state does not leak across scenes.
+        Time.timeScale = 1f;
+    }
+
     public void OnPressRestartButton()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void OnPressQuitButton()
     {
-        Application.Quit();
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu");
     }
     public void OnPressResumeButton()
     {
@@ -22,5 +31,5 @@ public class UIManagerBottom : MonoBehaviour
     {
         settingUI.SetActive(true);
         Time.timeScale = 0;
-    }
+    }   
 }
