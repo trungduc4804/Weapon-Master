@@ -52,7 +52,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (rangedWeapon is RangedWeapon ranged)
         {
-            ranged.damage += amount;
+            ranged.AddProjectileDamage(amount);
         }
     }
 }

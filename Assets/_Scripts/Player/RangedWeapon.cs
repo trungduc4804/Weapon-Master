@@ -5,7 +5,6 @@ public class RangedWeapon : WeaponBase
     public GameObject projectilePrefab;
     public Transform firePoint;
     public float projectileSpeed = 10f;
-    public float damage = 10f;
 
     public float delayBetweenShots = 0.5f;
     private float lastShotTime = 0f;
@@ -31,12 +30,42 @@ public class RangedWeapon : WeaponBase
         FirePoint projectileDamage = projectile.GetComponent<FirePoint>();
         if (projectileDamage != null)
         {
-            projectileDamage.damage = damage;
+            projectileDamage.damage = GetProjectileDamage();
         }
 
         lastShotTime = Time.time;
                 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         projectile.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+
+    public float GetProjectileDamage()
+    {
+        FirePoint projectileFirePoint = GetProjectileFirePoint();
+        return projectileFirePoint != null ? projectileFirePoint.damage : 0f;
+    }
+
+    public void AddProjectileDamage(float amount)
+    {
+        if (amount <= 0f)
+        {
+            return;
+        }
+
+        FirePoint projectileFirePoint = GetProjectileFirePoint();
+        if (projectileFirePoint != null)
+        {
+            projectileFirePoint.damage += amount;
+        }
+    }
+
+    private FirePoint GetProjectileFirePoint()
+    {
+        if (projectilePrefab == null)
+        {
+            return null;
+        }
+
+        return projectilePrefab.GetComponent<FirePoint>();
     }
 }

@@ -195,7 +195,7 @@ public class UIManage : MonoBehaviour
 
         if (playerAttack.currentWeapon is RangedWeapon ranged)
         {
-            return ranged.damage;
+            return ranged.GetProjectileDamage();
         }
 
         return 0f;

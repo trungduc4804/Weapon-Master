@@ -16,8 +16,6 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected float knockbackForce = 8f;
     [SerializeField] protected float knockbackTime = 0.15f;
     [SerializeField] protected GameObject goldPrefab;
-    [SerializeField] protected GameObject healthPrefab;
-    [SerializeField] protected GameObject damagePrefab;
 
     [Range(0,1)] [SerializeField] float dropChance = 0.5f;
 
@@ -169,24 +167,17 @@ public abstract class EnemyBase : MonoBehaviour
     }
 
     public virtual void DropItem()
-    {   
-    if (Random.value > dropChance)
-        return;
-
-    int rand = Random.Range(0, 3);
-
-    GameObject item = null;
-
-    if (rand == 0)
-        item = goldPrefab;
-    else if (rand == 1)
-        item = healthPrefab;
-    else
-        item = damagePrefab;
-
-    if (item != null)
     {
-        Instantiate(item, transform.position, Quaternion.identity);
-    }
+        if (Random.value > dropChance)
+        {
+            return;
+        }
+
+        if (goldPrefab == null)
+        {
+            return;
+        }
+
+        Instantiate(goldPrefab, transform.position, Quaternion.identity);
     }
 }
