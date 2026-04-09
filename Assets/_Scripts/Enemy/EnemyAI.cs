@@ -190,6 +190,11 @@ public class EnemyAI : EnemyBase
 
         lastAttackTime = Time.time;
 
+        if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
+        {
+            AudioManager.Instance.PlaySFXAtPoint(AudioManager.Instance.CueLibrary.EnemyAttack, transform.position);
+        }
+
         if (animator != null && !string.IsNullOrEmpty(attackTrigger))
         {
             animator.SetTrigger(attackTrigger);

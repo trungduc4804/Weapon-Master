@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public GameObject doorBlock;
-    private Collider2D doorCollider;
+    [SerializeField] private GameObject doorBlock;
+    [SerializeField] private bool useSpatialAudio = true;
 
-    void Awake()
+    private Collider2D doorCollider;
+    private bool? lastClosedState;
+
+    private void Awake()
     {
         if (doorBlock != null)
         {
-            // Ensure doorBlock is active so we can control it
             doorBlock.SetActive(true);
             doorCollider = doorBlock.GetComponent<Collider2D>();
         }
@@ -17,6 +19,11 @@ public class Door : MonoBehaviour
 
     public void SetClosed(bool closed)
     {
+        if (lastClosedState.HasValue && lastClosedState.Value == closed)
+        {
+            return;
+        }
+
         if (doorBlock != null)
         {
             doorBlock.SetActive(closed);
@@ -26,5 +33,24 @@ public class Door : MonoBehaviour
         {
             doorCollider.enabled = closed;
         }
+
+        lastClosedState = closed;
+
+        if (AudioManager.Instance == null || AudioManager.Instance.CueLibrary == null)
+        {
+            return;
+        }
+
+        AudioCue cue = closed
+            ? AudioManager.Instance.CueLibrary.DoorClose
+            : AudioManager.Instance.CueLibrary.DoorOpen;
+
+        if (useSpatialAudio)
+        {
+            AudioManager.Instance.PlaySFXAtPoint(cue, transform.position);
+            return;
+        }
+
+        AudioManager.Instance.PlaySFX(cue);
     }
 }

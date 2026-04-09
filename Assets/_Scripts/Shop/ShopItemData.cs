@@ -15,6 +15,7 @@ public class ShopItemData : ScriptableObject
     public string itemName = "New Item";
     public Sprite itemIcon;
     public int price = 10;
+    [Min(0f)] public float cooldown = 3f;
 
     [Header("Effect")]
     public ShopItemEffectType effectType = ShopItemEffectType.Heal;

@@ -5,6 +5,8 @@ public class EnemyBoss : EnemyAI
     [SerializeField] private string hurtTrigger = "isHurt";
     [SerializeField] private string dieBool = "isDie";
 
+    private bool bossMusicActive;
+
     protected override void Start()
     {
         base.Start();
@@ -12,6 +14,27 @@ public class EnemyBoss : EnemyAI
         if (animator == null)
         {
             animator = GetComponent<Animator>();
+        }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (isDead || bossMusicActive || player == null || room == null)
+        {
+            return;
+        }
+
+        if (player.CurrentRoom != room)
+        {
+            return;
+        }
+
+        bossMusicActive = true;
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusicState(AudioMusicState.Boss);
         }
     }
 
@@ -30,6 +53,11 @@ public class EnemyBoss : EnemyAI
         if (animator != null && !string.IsNullOrEmpty(dieBool))
         {
             animator.SetBool(dieBool, true);
+        }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusicState(AudioMusicState.Gameplay);
         }
 
         base.Die();

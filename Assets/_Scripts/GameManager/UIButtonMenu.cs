@@ -34,13 +34,21 @@ public class UIButtonMenu : MonoBehaviour
 
     private void Start()
     {
+        float initialSliderValue = volumeSlider != null ? volumeSlider.value : previousVolume;
+        if (AudioManager.Instance != null)
+        {
+            initialSliderValue = AudioManager.Instance.MasterVolume * 100f;
+        }
+
         if (volumeSlider != null)
         {
-            UpdateValueText(volumeSlider.value);
-            if (volumeSlider.value > 0f)
-            {
-                previousVolume = volumeSlider.value;
-            }
+            volumeSlider.SetValueWithoutNotify(initialSliderValue);
+        }
+
+        UpdateValueText(initialSliderValue);
+        if (initialSliderValue > 0f)
+        {
+            previousVolume = initialSliderValue;
         }
     }
 
@@ -59,17 +67,37 @@ public class UIButtonMenu : MonoBehaviour
             valueText.text = Mathf.RoundToInt(value).ToString();
         }
 
-        AudioListener.volume = Mathf.Clamp01(value / 100f);
+        float normalizedVolume = Mathf.Clamp01(value / 100f);
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetMasterVolume(normalizedVolume);
+        }
+        else
+        {
+            AudioListener.volume = normalizedVolume;
+        }
+
         isMuted = value <= MuteThreshold;
         UpdateVolumeIcon(value);
     }
     public void StartGame()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClick();
+            AudioManager.Instance.PlayMusicState(AudioMusicState.Gameplay);
+        }
+
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainGamePlay");
     }
     public void ExitGame()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClick();
+        }
+
         Application.Quit();
     }
 

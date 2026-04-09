@@ -45,6 +45,12 @@ public class Player : MonoBehaviour
     {
         health -= damage;
         animator.SetTrigger("isHurt");
+
+        if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.CueLibrary.PlayerHurt);
+        }
+
         if (health <= 0)
         {
             Die();
@@ -108,6 +114,12 @@ public class Player : MonoBehaviour
     {
         rb.linearVelocity = Vector2.zero;
         animator.SetBool("isDie", true);
+
+        if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.CueLibrary.PlayerDeath);
+        }
+
         enabled = false;
     }
 }

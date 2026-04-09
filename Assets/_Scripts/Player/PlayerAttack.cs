@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [Header("Current Weapon")]
     public WeaponBase currentWeapon;
 
+    [Header("Weapons")]
     public WeaponBase meleeWeapon;
     public WeaponBase rangedWeapon;
+
+    [Header("Input")]
+    [SerializeField] private KeyCode meleeWeaponKey = KeyCode.Q;
+    [SerializeField] private KeyCode rangedWeaponKey = KeyCode.E;
 
     void Start()
     {
@@ -14,12 +20,12 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(meleeWeaponKey))
         {
             SwitchWeapon(meleeWeapon);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(rangedWeaponKey))
         {
             SwitchWeapon(rangedWeapon);
         }
@@ -33,8 +39,15 @@ public class PlayerAttack : MonoBehaviour
 
     void SwitchWeapon(WeaponBase newWeapon)
     {
+        if (newWeapon == null)
+        {
+            return;
+        }
+
         if (currentWeapon != null)
+        {
             currentWeapon.gameObject.SetActive(false);
+        }
 
         currentWeapon = newWeapon;
         currentWeapon.gameObject.SetActive(true);

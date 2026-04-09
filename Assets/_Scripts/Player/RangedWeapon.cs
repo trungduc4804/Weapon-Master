@@ -34,6 +34,16 @@ public class RangedWeapon : WeaponBase
         }
 
         lastShotTime = Time.time;
+
+        AudioCue fallbackCue = null;
+        if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
+        {
+            fallbackCue = AudioManager.Instance.CueLibrary.GunAttack != null
+                ? AudioManager.Instance.CueLibrary.GunAttack
+                : AudioManager.Instance.CueLibrary.PlayerAttack;
+        }
+
+        PlayAttackSound(fallbackCue);
                 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         projectile.transform.rotation = Quaternion.Euler(0f, 0f, angle);

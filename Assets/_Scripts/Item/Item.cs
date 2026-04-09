@@ -25,10 +25,12 @@ public class ItemPickup : MonoBehaviour
         {
             case ItemType.Gold:
                 player.gold += goldAmount;
+                PlayPickupSound(AudioManager.Instance != null ? AudioManager.Instance.CueLibrary?.GoldPickup : null);
                 break;
 
             case ItemType.Health:
                 player.health += healthAmount;
+                PlayPickupSound(AudioManager.Instance != null ? AudioManager.Instance.CueLibrary?.HealthPickup : null);
                 break;
 
             case ItemType.Damage:
@@ -37,9 +39,20 @@ public class ItemPickup : MonoBehaviour
                 {
                     playerAttack.AddDamage(damageAmount);
                 }
+                PlayPickupSound(AudioManager.Instance != null ? AudioManager.Instance.CueLibrary?.BuffPickup : null);
                 break;
         }
 
         Destroy(gameObject);
+    }
+
+    private void PlayPickupSound(AudioCue cue)
+    {
+        if (AudioManager.Instance == null || cue == null)
+        {
+            return;
+        }
+
+        AudioManager.Instance.PlaySFXAtPoint(cue, transform.position);
     }
 }

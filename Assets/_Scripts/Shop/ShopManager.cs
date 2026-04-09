@@ -6,7 +6,7 @@ public class ShopManager : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private Player player;
-    [SerializeField] private PlayerAttack playerAttack;
+    [SerializeField] private QuickItemBar quickItemBar;
     [SerializeField] private bool autoFindPlayer = true;
 
     [Header("UI References")]
@@ -23,6 +23,7 @@ public class ShopManager : MonoBehaviour
     private readonly List<ShopItemEntryUI> activeEntries = new List<ShopItemEntryUI>();
 
     private int lastGold = int.MinValue;
+    private bool hasAppliedInitialShopState;
 
     private void Awake()
     {
@@ -76,6 +77,12 @@ public class ShopManager : MonoBehaviour
             return false;
         }
 
+        if (quickItemBar == null)
+        {
+            ShowMessage("Chua gan QuickItemBar.");
+            return false;
+        }
+
         int price = Mathf.Max(0, itemData.price);
         int purchasedCount = GetPurchasedCount(itemData);
 
@@ -93,8 +100,14 @@ public class ShopManager : MonoBehaviour
             return false;
         }
 
+        if (!quickItemBar.TryAddItem(itemData))
+        {
+            ShowMessage("Thanh item da day.");
+            RefreshUI(force: true);
+            return false;
+        }
+
         player.gold -= price;
-        ApplyItemEffect(itemData);
         purchasedCounts[itemData] = purchasedCount + 1;
 
         ShowMessage("Mua thanh cong: " + itemData.itemName);
@@ -110,11 +123,26 @@ public class ShopManager : MonoBehaviour
         }
 
         shopPanel.SetActive(isOpen);
+
+        if (hasAppliedInitialShopState && AudioManager.Instance != null)
+        {
+            if (isOpen)
+            {
+                AudioManager.Instance.PlayMenuOpen();
+            }
+            else
+            {
+                AudioManager.Instance.PlayMenuClose();
+            }
+        }
+
         if (isOpen)
         {
             ShowMessage(string.Empty);
             RefreshUI(force: true);
         }
+
+        hasAppliedInitialShopState = true;
     }
 
     private void ResolveDependencies()
@@ -124,14 +152,9 @@ public class ShopManager : MonoBehaviour
             player = FindFirstObjectByType<Player>();
         }
 
-        if (playerAttack == null && player != null)
+        if (quickItemBar == null && autoFindPlayer)
         {
-            playerAttack = player.GetComponent<PlayerAttack>();
-        }
-
-        if (playerAttack == null && autoFindPlayer)
-        {
-            playerAttack = FindFirstObjectByType<PlayerAttack>();
+            quickItemBar = FindFirstObjectByType<QuickItemBar>();
         }
     }
 
@@ -212,28 +235,6 @@ public class ShopManager : MonoBehaviour
             bool canAfford = player.gold >= Mathf.Max(0, item.price);
 
             entry.RefreshState(canAfford, canPurchase, remainCount);
-        }
-    }
-
-    private void ApplyItemEffect(ShopItemData itemData)
-    {
-        switch (itemData.effectType)
-        {
-            case ShopItemEffectType.Heal:
-                player.health += itemData.effectValue;
-                break;
-            case ShopItemEffectType.DamageBoost:
-                if (playerAttack != null)
-                {
-                    playerAttack.AddDamage(itemData.effectValue);
-                }
-                break;
-            case ShopItemEffectType.MoveSpeedBoost:
-                player.speedPlayer += itemData.effectValue;
-                break;
-            case ShopItemEffectType.Gold:
-                player.gold += Mathf.RoundToInt(itemData.effectValue);
-                break;
         }
     }
 

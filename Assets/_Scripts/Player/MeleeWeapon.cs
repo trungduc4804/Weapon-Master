@@ -28,6 +28,16 @@ public class MeleeWeapon : WeaponBase
         if (animator != null)
             animator.SetTrigger("isAttack");
 
+        AudioCue fallbackCue = null;
+        if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
+        {
+            fallbackCue = AudioManager.Instance.CueLibrary.SwordAttack != null
+                ? AudioManager.Instance.CueLibrary.SwordAttack
+                : AudioManager.Instance.CueLibrary.PlayerAttack;
+        }
+
+        PlayAttackSound(fallbackCue);
+
         StartCoroutine(EnableCollider());
         
     }

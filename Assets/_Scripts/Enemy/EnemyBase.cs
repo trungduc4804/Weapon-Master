@@ -96,6 +96,11 @@ public abstract class EnemyBase : MonoBehaviour
 
         hp -= dmg;
 
+        if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
+        {
+            AudioManager.Instance.PlaySFXAtPoint(AudioManager.Instance.CueLibrary.EnemyHurt, transform.position);
+        }
+
         Vector2 knockDir = Vector2.zero;
         if (player != null)
         {
@@ -147,6 +152,11 @@ public abstract class EnemyBase : MonoBehaviour
 
         isDead = true;
         canMove = false;
+
+        if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
+        {
+            AudioManager.Instance.PlaySFXAtPoint(AudioManager.Instance.CueLibrary.EnemyDeath, transform.position);
+        }
 
         Collider2D col = GetComponent<Collider2D>();
         if (col != null)

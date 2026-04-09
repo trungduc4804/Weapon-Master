@@ -13,22 +13,43 @@ public class UIManagerBottom : MonoBehaviour
 
     public void OnPressRestartButton()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClick();
+        }
+
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void OnPressQuitButton()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClick();
+            AudioManager.Instance.PlayMusicState(AudioMusicState.MainMenu);
+        }
+
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
     public void OnPressResumeButton()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMenuClose();
+        }
+
         settingUI.SetActive(false);
         Time.timeScale = 1;
     }
     public void OnPressSettingButton()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMenuOpen();
+        }
+
         settingUI.SetActive(true);
         Time.timeScale = 0;
     }   

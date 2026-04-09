@@ -65,7 +65,7 @@ public class ShopItemEntryUI : MonoBehaviour
             }
             else
             {
-                buyButtonText.text = "Mua";
+                buyButtonText.text = priceText.text;
             }
         }
 
@@ -87,6 +87,11 @@ public class ShopItemEntryUI : MonoBehaviour
         if (shopManager == null || itemData == null)
         {
             return;
+        }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClick();
         }
 
         shopManager.TryBuyItem(itemData);

@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8752a1fd05fd695428ac548679aa9b03, type: 3}
+  m_Name: AudioCueLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::AudioCueLibrary
+  mainMenuMusic:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  gameplayMusic:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  bossMusic:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  doorOpen:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  doorClose:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  playerAttack:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  playerHurt:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  playerDeath:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  enemyAttack:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  enemyHurt:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  enemyDeath:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  goldPickup:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  healthPickup:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  buffPickup:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  buttonClick:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  buttonHover:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  menuOpen:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  menuClose:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
