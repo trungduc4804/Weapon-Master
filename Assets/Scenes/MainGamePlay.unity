@@ -809,6 +809,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4f6459e15a5f6418191a527ae1c782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
+  attackCueOverride:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
   damage: 30
   attackDuration: 0.3
   attackCollider: {fileID: 257509021}
@@ -5222,6 +5229,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007f83efc9181ed4198562d23ad73e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedWeapon
+  attackCueOverride:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
   projectilePrefab: {fileID: 1549745172401886933, guid: 603197f6135c26c4cae03f9746ae3212, type: 3}
   firePoint: {fileID: 2057806005}
   projectileSpeed: 20
@@ -6855,6 +6869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManagerBottom
   settingUI: {fileID: 2087897586}
+  inventoryUI: {fileID: 1025193096}
 --- !u!4 &1958442619
 Transform:
   m_ObjectHideFlags: 0

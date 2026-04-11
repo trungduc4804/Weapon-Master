@@ -13,7 +13,6 @@ public class AudioCueLibrary : ScriptableObject
     [SerializeField] private AudioCue doorClose;
 
     [Header("Player")]
-    [SerializeField] private AudioCue playerAttack;
     [SerializeField] private AudioCue swordAttack;
     [SerializeField] private AudioCue gunAttack;
     [SerializeField] private AudioCue playerHurt;
@@ -40,7 +39,6 @@ public class AudioCueLibrary : ScriptableObject
     public AudioCue BossMusic => bossMusic;
     public AudioCue DoorOpen => doorOpen;
     public AudioCue DoorClose => doorClose;
-    public AudioCue PlayerAttack => playerAttack;
     public AudioCue SwordAttack => swordAttack;
     public AudioCue GunAttack => gunAttack;
     public AudioCue PlayerHurt => playerHurt;

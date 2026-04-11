@@ -31,9 +31,7 @@ public class MeleeWeapon : WeaponBase
         AudioCue fallbackCue = null;
         if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
         {
-            fallbackCue = AudioManager.Instance.CueLibrary.SwordAttack != null
-                ? AudioManager.Instance.CueLibrary.SwordAttack
-                : AudioManager.Instance.CueLibrary.PlayerAttack;
+            fallbackCue = AudioManager.Instance.CueLibrary.SwordAttack;
         }
 
         PlayAttackSound(fallbackCue);

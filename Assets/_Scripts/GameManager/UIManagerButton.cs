@@ -1,9 +1,11 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class UIManagerBottom : MonoBehaviour
 {
     [SerializeField] private GameObject settingUI;
+    [SerializeField] private GameObject inventoryUI;
 
     private void OnDisable()
     {
@@ -41,6 +43,7 @@ public class UIManagerBottom : MonoBehaviour
         }
 
         settingUI.SetActive(false);
+        inventoryUI.SetActive(true);
         Time.timeScale = 1;
     }
     public void OnPressSettingButton()
@@ -51,6 +54,7 @@ public class UIManagerBottom : MonoBehaviour
         }
 
         settingUI.SetActive(true);
+        inventoryUI.SetActive(false);
         Time.timeScale = 0;
     }   
 }

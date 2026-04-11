@@ -38,9 +38,7 @@ public class RangedWeapon : WeaponBase
         AudioCue fallbackCue = null;
         if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
         {
-            fallbackCue = AudioManager.Instance.CueLibrary.GunAttack != null
-                ? AudioManager.Instance.CueLibrary.GunAttack
-                : AudioManager.Instance.CueLibrary.PlayerAttack;
+            fallbackCue = AudioManager.Instance.CueLibrary.GunAttack;
         }
 
         PlayAttackSound(fallbackCue);
