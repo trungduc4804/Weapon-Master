@@ -33,7 +33,7 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         BuildItemList();
-        SetShopOpen(false);
+        //SetShopOpen(false);
         RefreshUI(force: true);
     }
 
@@ -50,25 +50,56 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void ToggleShop()
-    {
-        if (shopPanel == null)
-        {
-            return;
-        }
-
-        SetShopOpen(!shopPanel.activeSelf);
-    }
-
     public void OpenShop()
     {
-        SetShopOpen(true);
+        shopPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void CloseShop()
     {
-        SetShopOpen(false);
+        shopPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
+    // public void OpenShop()
+    // {
+    //     
+    //     SetShopOpen(true);
+    //     
+    //     Time.timeScale = 0f;
+    //     
+    // }
+
+    // public void CloseShop()
+    // {
+    //     
+    //     SetShopOpen(false);
+    //     Time.timeScale = 1f;
+    //     
+    // }
+
+    // public void ToggleShop()
+    // {
+    //    
+    //     if (shopPanel == null)
+    //     {
+    //         Debug.LogError("ToggleShop: shopPanel is NULL!");
+    //         return;
+    //     }
+
+    //     Debug.Log($"shopPanel.activeSelf = {shopPanel.activeSelf}");
+
+    //     if (shopPanel.activeSelf)
+    //     {
+    //         Debug.Log("Shop is active, calling CloseShop()");
+    //         CloseShop();
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("Shop is inactive, calling OpenShop()");
+    //         OpenShop();
+    //     }
+    // }
 
     public bool TryBuyItem(ShopItemData itemData)
     {
@@ -115,35 +146,40 @@ public class ShopManager : MonoBehaviour
         return true;
     }
 
-    private void SetShopOpen(bool isOpen)
-    {
-        if (shopPanel == null)
-        {
-            return;
-        }
+    // private void SetShopOpen(bool isOpen)
+    // {
+    //     if (shopPanel == null)
+    //     {
+    //         Debug.LogError("SetShopOpen: shopPanel is NULL!");
+    //         return;
+    //     }
 
-        shopPanel.SetActive(isOpen);
+    //     Debug.Log($"SetShopOpen({isOpen}) - shopPanel name: {shopPanel.name}");
+    //     shopPanel.SetActive(isOpen);
+    //     Debug.Log($"After SetActive({isOpen}): shopPanel.activeSelf = {shopPanel.activeSelf}");
 
-        if (hasAppliedInitialShopState && AudioManager.Instance != null)
-        {
-            if (isOpen)
-            {
-                AudioManager.Instance.PlayMenuOpen();
-            }
-            else
-            {
-                AudioManager.Instance.PlayMenuClose();
-            }
-        }
+    //     if (hasAppliedInitialShopState && AudioManager.Instance != null)
+    //     {
+    //         if (isOpen)
+    //         {
+    //             Debug.Log("Playing MenuOpen sound");
+    //             AudioManager.Instance.PlayMenuOpen();
+    //         }
+    //         else
+    //         {
+    //             Debug.Log("Playing MenuClose sound");
+    //             AudioManager.Instance.PlayMenuClose();
+    //         }
+    //     }
 
-        if (isOpen)
-        {
-            ShowMessage(string.Empty);
-            RefreshUI(force: true);
-        }
+    //     if (isOpen)
+    //     {
+    //         ShowMessage(string.Empty);
+    //         RefreshUI(force: true);
+    //     }
 
-        hasAppliedInitialShopState = true;
-    }
+    //     hasAppliedInitialShopState = true;
+    // }
 
     private void ResolveDependencies()
     {

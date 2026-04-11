@@ -50,9 +50,9 @@ MonoBehaviour:
     outputGroup: {fileID: 0}
   swordAttack:
     clips:
-    - {fileID: 8300000, guid: 7ee59fed30a3c1c4c8395459f9c58838, type: 3}
-    - {fileID: 8300000, guid: 20c69768e67c1fb48b60a5efcb08bfda, type: 3}
-    - {fileID: 8300000, guid: 0d0ec986bc78a0e40aaf8b3d3d137d29, type: 3}
+    - {fileID: 8300000, guid: d76bbe9b53320de49993f60845907879, type: 3}
+    - {fileID: 8300000, guid: cf276e292ad2ee445ac9a8fadf8a533b, type: 3}
+    - {fileID: 8300000, guid: ec2e79badbbf13d4e9cd0c74ad84419d, type: 3}
     volume: 1
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
     outputGroup: {fileID: 0}
   gunAttack:
     clips:
-    - {fileID: 8300000, guid: bb7a87078cbe39f4bbab9d22a0a34819, type: 3}
+    - {fileID: 8300000, guid: 37ec9540ffbbdd34ab1966150c9bd091, type: 3}
     volume: 1
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0

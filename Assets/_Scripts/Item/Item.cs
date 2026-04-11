@@ -15,9 +15,9 @@ public class ItemPickup : MonoBehaviour
     public float healthAmount = 2f;
     public float damageAmount = 1f;
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = other.GetComponent<Player>();
+        Player player = collision.GetComponent<Player>();
 
         if (player == null) return;
 

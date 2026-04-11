@@ -20,9 +20,17 @@ public abstract class WeaponBase : MonoBehaviour
         }
 
         AudioCue cueToPlay = attackCueOverride != null ? attackCueOverride : fallbackCue;
-        if (cueToPlay == null)
+        if (attackCueOverride != null && attackCueOverride.HasClip)
         {
-            return;
+            AudioManager.Instance.PlaySFX(attackCueOverride);
+        }
+        else if (fallbackCue != null && fallbackCue.HasClip)
+        {
+            AudioManager.Instance.PlaySFX(fallbackCue);
+        }
+        else
+        {
+            Debug.LogWarning("No valid attack sound!");
         }
 
         AudioManager.Instance.PlaySFX(cueToPlay);
