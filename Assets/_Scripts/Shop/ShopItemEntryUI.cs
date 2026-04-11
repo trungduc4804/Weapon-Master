@@ -59,10 +59,10 @@ public class ShopItemEntryUI : MonoBehaviour
             {
                 buyButtonText.text = "Da het";
             }
-            else if (!canAfford)
-            {
-                buyButtonText.text = "Thieu vang";
-            }
+            // else if (!canAfford)
+            // {
+            //     buyButtonText.text = "Thieu vang";
+            // }
             else
             {
                 buyButtonText.text = priceText.text;

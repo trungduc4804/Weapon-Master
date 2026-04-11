@@ -106,7 +106,8 @@ MonoBehaviour:
     loop: 0
     outputGroup: {fileID: 0}
   goldPickup:
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 1cc53456411b0f9438e9c2213d053f74, type: 3}
     volume: 1
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
@@ -128,7 +129,7 @@ MonoBehaviour:
     outputGroup: {fileID: 0}
   buttonClick:
     clips:
-    - {fileID: 8300000, guid: 37ec9540ffbbdd34ab1966150c9bd091, type: 3}
+    - {fileID: 8300000, guid: d628ece58f90a154dbe2b544dc49b380, type: 3}
     volume: 1
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
@@ -142,8 +143,7 @@ MonoBehaviour:
     loop: 0
     outputGroup: {fileID: 0}
   menuOpen:
-    clips:
-    - {fileID: 8300000, guid: 37ec9540ffbbdd34ab1966150c9bd091, type: 3}
+    clips: []
     volume: 1
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
