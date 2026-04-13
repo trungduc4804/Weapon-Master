@@ -12,7 +12,10 @@ public class Player : MonoBehaviour
     private bool isKnockedBack = false;  // Thêm flag knockback
     public float knockbackForce = 5f;  // Lực knockback
     public int gold = 0;
+    [SerializeField] private int bossKeyCount = 0;
     public Room CurrentRoom => currentRoom;
+    public int BossKeyCount => bossKeyCount;
+    public bool HasBossKey => bossKeyCount > 0;
 
     void Start()
     {
@@ -108,7 +111,33 @@ public class Player : MonoBehaviour
         {
             CameraManager.Instance.MoveToRoom(room);
         }
-    }   
+    }
+
+    public void AddBossKey(int amount = 1)
+    {
+        if (amount <= 0)
+        {
+            return;
+        }
+
+        bossKeyCount += amount;
+    }
+
+    public bool TryConsumeBossKey(int amount = 1)
+    {
+        if (amount <= 0)
+        {
+            return true;
+        }
+
+        if (bossKeyCount < amount)
+        {
+            return false;
+        }
+
+        bossKeyCount -= amount;
+        return true;
+    }
 
     private void Die()
     {

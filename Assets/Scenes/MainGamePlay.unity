@@ -1633,6 +1633,7 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 0d994c2d76ee0464ea4d3cca297fa0c5, type: 2}
   - {fileID: 11400000, guid: 98040f9c5e0d96642b3565e95d45c2a5, type: 2}
+  - {fileID: 11400000, guid: 2b6ec557e73c65c4aa4fc8b344e06fe5, type: 2}
 --- !u!4 &469250967
 Transform:
   m_ObjectHideFlags: 0
@@ -7518,6 +7519,7 @@ MonoBehaviour:
   speedPlayer: 5
   knockbackForce: 5
   gold: 100
+  bossKeyCount: 0
 --- !u!50 &2071736934
 Rigidbody2D:
   serializedVersion: 5

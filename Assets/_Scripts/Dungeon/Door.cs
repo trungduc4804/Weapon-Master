@@ -6,6 +6,8 @@ public class Door : MonoBehaviour
     [SerializeField] private bool useSpatialAudio = true;
 
     private Collider2D doorCollider;
+    private bool desiredClosedState;
+    private bool isLocked;
     private bool? lastClosedState;
 
     private void Awake()
@@ -19,6 +21,20 @@ public class Door : MonoBehaviour
 
     public void SetClosed(bool closed)
     {
+        desiredClosedState = closed;
+        ApplyState();
+    }
+
+    public void SetLocked(bool locked)
+    {
+        isLocked = locked;
+        ApplyState();
+    }
+
+    private void ApplyState()
+    {
+        bool closed = desiredClosedState || isLocked;
+
         if (lastClosedState.HasValue && lastClosedState.Value == closed)
         {
             return;

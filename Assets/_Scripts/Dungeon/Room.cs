@@ -7,6 +7,10 @@ public class Room : MonoBehaviour
     public Door doorBottom;
     public Door doorLeft;
     public Door doorRight;
+    public bool HasTopConnection => hasTop;
+    public bool HasBottomConnection => hasBottom;
+    public bool HasLeftConnection => hasLeft;
+    public bool HasRightConnection => hasRight;
 
     public EnemySpawner enemySpawner;
 

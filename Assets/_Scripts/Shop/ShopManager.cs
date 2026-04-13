@@ -108,7 +108,7 @@ public class ShopManager : MonoBehaviour
             return false;
         }
 
-        if (quickItemBar == null)
+        if (itemData.addToQuickItemBar && quickItemBar == null)
         {
             ShowMessage("Chua gan QuickItemBar.");
             return false;
@@ -131,7 +131,7 @@ public class ShopManager : MonoBehaviour
             return false;
         }
 
-        if (!quickItemBar.TryAddItem(itemData))
+        if (itemData.addToQuickItemBar && !quickItemBar.TryAddItem(itemData))
         {
             ShowMessage("Thanh item da day.");
             RefreshUI(force: true);
@@ -140,6 +140,11 @@ public class ShopManager : MonoBehaviour
 
         player.gold -= price;
         purchasedCounts[itemData] = purchasedCount + 1;
+
+        if (itemData.grantsBossKey)
+        {
+            player.AddBossKey(itemData.bossKeyAmount);
+        }
 
         ShowMessage("Mua thanh cong: " + itemData.itemName);
         RefreshUI(force: true);

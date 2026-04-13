@@ -16,10 +16,13 @@ public class ShopItemData : ScriptableObject
     public Sprite itemIcon;
     public int price = 10;
     [Min(0f)] public float cooldown = 3f;
+    public bool addToQuickItemBar = true;
 
     [Header("Effect")]
     public ShopItemEffectType effectType = ShopItemEffectType.Heal;
     public float effectValue = 10f;
+    public bool grantsBossKey;
+    [Min(1)] public int bossKeyAmount = 1;
 
     [Header("Purchase Limit")]
     [Tooltip("-1 means unlimited purchases.")]

@@ -15,17 +15,19 @@ MonoBehaviour:
   mainMenuMusic:
     clips:
     - {fileID: 0}
+    - {fileID: 8300000, guid: e646329b1d20bb04c8ecf2396b888e45, type: 3}
     volume: 1
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
-    loop: 0
+    loop: 1
     outputGroup: {fileID: 0}
   gameplayMusic:
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: f92a198f5c0646e4d970233e97fb1d5c, type: 3}
     volume: 1
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
-    loop: 0
+    loop: 1
     outputGroup: {fileID: 0}
   bossMusic:
     clips: []
