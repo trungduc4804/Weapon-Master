@@ -24,6 +24,27 @@ public class Room : MonoBehaviour
     bool hasLeft;
     bool hasRight;
 
+    [Header("Minimap")]
+    [Tooltip("If checked, the room icon on the minimap layer will hide until the player enters it.")]
+    public bool hideMinimapIconUntilEntered = true;
+    private readonly System.Collections.Generic.List<GameObject> minimapIcons = new System.Collections.Generic.List<GameObject>();
+
+    private void Start()
+    {
+        int minimapLayer = LayerMask.NameToLayer("Minimap");
+        if (minimapLayer != -1 && hideMinimapIconUntilEntered)
+        {
+            foreach (Transform child in GetComponentsInChildren<Transform>(true))
+            {
+                if (child.gameObject.layer == minimapLayer && child != transform)
+                {
+                    minimapIcons.Add(child.gameObject);
+                    child.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+
     public void SetDoors(bool top, bool bottom, bool left, bool right)
     {
         hasTop = top;
@@ -40,6 +61,11 @@ public class Room : MonoBehaviour
 
     public void PlayerEntered(Vector2Int entryDir)
     {
+        foreach (var icon in minimapIcons)
+        {
+            if (icon != null) icon.SetActive(true);
+        }
+
         if (cleared)
         {
             OpenDoors();
