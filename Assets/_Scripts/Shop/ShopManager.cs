@@ -11,6 +11,7 @@ public class ShopManager : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private GameObject shopPanel;
+    [SerializeField] private GameObject gameplayUI;
     [SerializeField] private Transform listRoot;
     [SerializeField] private ShopItemEntryUI itemEntryPrefab;
     [SerializeField] private TMP_Text totalGoldText;
@@ -53,12 +54,14 @@ public class ShopManager : MonoBehaviour
     public void OpenShop()
     {
         shopPanel.SetActive(true);
+        gameplayUI.SetActive(false);
         Time.timeScale = 0f;
     }
 
     public void CloseShop()
     {
         shopPanel.SetActive(false);
+        gameplayUI.SetActive(true);
         Time.timeScale = 1f;
     }
     // public void OpenShop()
