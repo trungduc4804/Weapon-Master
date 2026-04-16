@@ -3,20 +3,20 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Selectable))]
-public class UIButtonSound : MonoBehaviour, IPointerEnterHandler, ISubmitHandler, IPointerClickHandler
+public class UIButtonSound : MonoBehaviour, ISubmitHandler, IPointerClickHandler
 {
-    [SerializeField] private bool playHoverSound = true;
+    // [SerializeField] private bool playHoverSound = true;
     [SerializeField] private bool playClickSound = true;
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (!playHoverSound || AudioManager.Instance == null)
-        {
-            return;
-        }
+    // public void OnPointerEnter(PointerEventData eventData)
+    // {
+    //     if (!playHoverSound || AudioManager.Instance == null)
+    //     {
+    //         return;
+    //     }
 
-        AudioManager.Instance.PlayButtonHover();
-    }
+    //     AudioManager.Instance.PlayButtonHover();
+    // }
 
     public void OnSubmit(BaseEventData eventData)
     {

@@ -132,7 +132,7 @@ BoxCollider2D:
   m_Offset: {x: 0.1486932, y: -0.5991142}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.51197714, y: 0.274461}
+    pivot: {x: 0.51, y: 0.25}
     oldSize: {x: 12, y: 6.6666665}
     newSize: {x: 12, y: 6.6666665}
     adaptiveTilingThreshold: 0.5
@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c994ae1d7e933e4499b9f9bee00cc0f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBoss
+  stats: {fileID: 11400000, guid: 9a3f9e240cdf61e4f8d81161d2907f2a, type: 2}
   speedEnemy: 3
   hp: 200
   damage: 20
@@ -188,8 +189,6 @@ MonoBehaviour:
   knockbackForce: 8
   knockbackTime: 0.15
   goldPrefab: {fileID: 0}
-  healthPrefab: {fileID: 0}
-  damagePrefab: {fileID: 0}
   dropChance: 0.5
   detectionRange: 16
   roomGrid: {fileID: 0}

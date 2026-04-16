@@ -382,8 +382,11 @@ public class EnemyAI : EnemyBase
         return player != null;
     }
 
-    private void OnDrawGizmosSelected()
+#if UNITY_EDITOR
+    protected override void OnDrawGizmosSelected()
     {
+        base.OnDrawGizmosSelected();
+
         if (!drawDebugPath || currentPath == null || currentPath.Count == 0)
         {
             return;
@@ -400,4 +403,5 @@ public class EnemyAI : EnemyBase
             from = to;
         }
     }
+#endif
 }

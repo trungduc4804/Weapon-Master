@@ -130,6 +130,20 @@ public class Grid2D : MonoBehaviour
                     continue;
                 }
 
+                // CHỐNG KẸT GÓC (Corner Clipping Fix)
+                // Nếu đây là di chuyển chéo, kiểm tra 2 ô liền kề tạo thành góc đó có phải là tường không.
+                if (allowDiagonal && Mathf.Abs(x) == 1 && Mathf.Abs(y) == 1)
+                {
+                    bool isWalkableHorizontal = grid[node.gridX + x, node.gridY].walkable;
+                    bool isWalkableVertical = grid[node.gridX, node.gridY + y].walkable;
+
+                    // Nếu 1 trong 2 ô chắn đường (không walkable), tuyệt đối cấm đi chéo qua đó để tránh va chạm vật lý.
+                    if (!isWalkableHorizontal || !isWalkableVertical)
+                    {
+                        continue;
+                    }
+                }
+
                 neighboursBuffer.Add(grid[checkX, checkY]);
             }
         }

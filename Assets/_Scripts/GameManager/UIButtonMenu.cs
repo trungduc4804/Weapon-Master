@@ -9,6 +9,7 @@ public class UIButtonMenu : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI valueText;
     [SerializeField] private GameObject volumeUI;
+    [SerializeField] private GameObject settingUI;
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private Image volumeIconImage;
     [SerializeField] private Sprite volumeOnSprite;
@@ -90,6 +91,22 @@ public class UIButtonMenu : MonoBehaviour
 
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainGamePlay");
+    }
+    public void Setting()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClick();
+        }
+        settingUI.SetActive(true);
+    }
+    public void CloseSetting()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClick();
+        }
+        settingUI.SetActive(false);
     }
     public void ExitGame()
     {

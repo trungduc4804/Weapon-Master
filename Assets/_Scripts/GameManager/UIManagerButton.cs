@@ -39,7 +39,7 @@ public class UIManagerBottom : MonoBehaviour
     {
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.PlayMenuClose();
+            AudioManager.Instance.PlayButtonClick();
         }
 
         settingUI.SetActive(false);
@@ -50,7 +50,7 @@ public class UIManagerBottom : MonoBehaviour
     {
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.PlayMenuOpen();
+            AudioManager.Instance.PlayButtonClick();
         }
 
         settingUI.SetActive(true);

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 9037413677040565471}
   - component: {fileID: 3360673148881187845}
   - component: {fileID: 8805634556429392612}
-  - component: {fileID: 4603410915395888051}
   - component: {fileID: 732643688258606038}
+  - component: {fileID: 4545336898947592189}
   m_Layer: 6
   m_Name: EnemySkeleton2
   m_TagString: Enemy
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e21391954250b47a8000143049b4d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySkeleton2
+  stats: {fileID: 11400000, guid: bbb804224b3d5c743b3991351350da59, type: 2}
   speedEnemy: 2.5
   hp: 100
   damage: 10
@@ -137,8 +138,6 @@ MonoBehaviour:
   knockbackForce: 8
   knockbackTime: 0.15
   goldPrefab: {fileID: 6614948060245872990, guid: b984ddffb9400344f8db13ff94259c39, type: 3}
-  healthPrefab: {fileID: 2366001037350725940, guid: 4c85409b3e625194981ebbd3df3bc21a, type: 3}
-  damagePrefab: {fileID: 7711751177726667805, guid: 9827ad20f8b461546850e33cb6233a92, type: 3}
   dropChance: 0.5
   detectionRange: 16
   roomGrid: {fileID: 0}
@@ -153,8 +152,35 @@ MonoBehaviour:
   debugPathColor: {r: 0, g: 1, b: 1, a: 1}
   hurtTrigger: isHurt
   dieBool: isDie
---- !u!61 &4603410915395888051
-BoxCollider2D:
+--- !u!50 &732643688258606038
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7523699065546206253}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!58 &4545336898947592189
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -187,42 +213,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.3058201, y: -0.3142557}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6363636, y: 1.5454545}
-    newSize: {x: 1.6363636, y: 1.5454545}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.0247233, y: 0.9169431}
-  m_EdgeRadius: 0
---- !u!50 &732643688258606038
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7523699065546206253}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Offset: {x: -0.36, y: -0.26416904}
+  m_Radius: 0.43416905

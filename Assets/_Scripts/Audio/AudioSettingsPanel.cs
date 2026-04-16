@@ -46,7 +46,7 @@ public class AudioSettingsPanel : MonoBehaviour
 
         AudioManager.Instance.SetSfxVolume(value);
         UpdateLabel(sfxValueText, value);
-        AudioManager.Instance.PlayButtonHover();
+        // AudioManager.Instance.PlayButtonHover();
     }
 
     public void OnMusicVolumeChanged(float value)

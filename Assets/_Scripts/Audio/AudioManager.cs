@@ -208,20 +208,20 @@ public class AudioManager : MonoBehaviour
         PlayUI(cueLibrary != null ? cueLibrary.ButtonClick : null);
     }
 
-    public void PlayButtonHover()
-    {
-        PlayUI(cueLibrary != null ? cueLibrary.ButtonHover : null);
-    }
+    // public void PlayButtonHover()
+    // {
+    //     PlayUI(cueLibrary != null ? cueLibrary.ButtonHover : null);
+    // }
 
-    public void PlayMenuOpen()
-    {
-        PlayUI(cueLibrary != null ? cueLibrary.MenuOpen : null);
-    }
+    // public void PlayMenuOpen()
+    // {
+    //     PlayUI(cueLibrary != null ? cueLibrary.MenuOpen : null);
+    // }
 
-    public void PlayMenuClose()
-    {
-        PlayUI(cueLibrary != null ? cueLibrary.MenuClose : null);
-    }
+    // public void PlayMenuClose()
+    // {
+    //     PlayUI(cueLibrary != null ? cueLibrary.MenuClose : null);
+    // }
 
     private void PlaySceneMusic(string sceneName, bool forceRestart)
     {

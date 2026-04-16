@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2574449379827884417}
   - component: {fileID: 8993455017090252648}
   - component: {fileID: 4329458982088424363}
-  - component: {fileID: 8977377822604384341}
+  - component: {fileID: 7430855753298749386}
   m_Layer: 6
   m_Name: EnemySkeleton3
   m_TagString: Enemy
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1d7e5a2cf38df47a7256979bedf57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySkeleton3
+  stats: {fileID: 11400000, guid: 8e81859359bc3a043ad3c079b7997adc, type: 2}
   speedEnemy: 2.5
   hp: 100
   damage: 10
@@ -137,8 +138,6 @@ MonoBehaviour:
   knockbackForce: 8
   knockbackTime: 0.15
   goldPrefab: {fileID: 6614948060245872990, guid: b984ddffb9400344f8db13ff94259c39, type: 3}
-  healthPrefab: {fileID: 2366001037350725940, guid: 4c85409b3e625194981ebbd3df3bc21a, type: 3}
-  damagePrefab: {fileID: 7711751177726667805, guid: 9827ad20f8b461546850e33cb6233a92, type: 3}
   dropChance: 0.5
   detectionRange: 16
   roomGrid: {fileID: 0}
@@ -180,8 +179,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &8977377822604384341
-BoxCollider2D:
+--- !u!58 &7430855753298749386
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -214,15 +213,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0102702975, y: -0.34282434}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2727273, y: 1.6363636}
-    newSize: {x: 1.2727273, y: 1.6363636}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.1446909, y: 0.9507148}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: -0.29444975}
+  m_Radius: 0.47555023

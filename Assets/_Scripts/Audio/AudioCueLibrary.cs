@@ -30,9 +30,9 @@ public class AudioCueLibrary : ScriptableObject
 
     [Header("UI")]
     [SerializeField] private AudioCue buttonClick;
-    [SerializeField] private AudioCue buttonHover;
-    [SerializeField] private AudioCue menuOpen;
-    [SerializeField] private AudioCue menuClose;
+    // [SerializeField] private AudioCue buttonHover;
+    // [SerializeField] private AudioCue menuOpen;
+    // [SerializeField] private AudioCue menuClose;
 
     public AudioCue MainMenuMusic => mainMenuMusic;
     public AudioCue GameplayMusic => gameplayMusic;
@@ -50,7 +50,7 @@ public class AudioCueLibrary : ScriptableObject
     public AudioCue HealthPickup => healthPickup;
     public AudioCue BuffPickup => buffPickup;
     public AudioCue ButtonClick => buttonClick;
-    public AudioCue ButtonHover => buttonHover;
-    public AudioCue MenuOpen => menuOpen;
-    public AudioCue MenuClose => menuClose;
+    // public AudioCue ButtonHover => buttonHover;
+    // public AudioCue MenuOpen => menuOpen;
+    // public AudioCue MenuClose => menuClose;
 }

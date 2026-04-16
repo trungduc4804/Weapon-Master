@@ -3,24 +3,19 @@ using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour
 {
-    [Header("Stats")]
-    [SerializeField] protected float speedEnemy = 3f;
-    [SerializeField] protected float hp = 100f;
-    [SerializeField] protected float damage = 10f;
+    [Header("Stats Configuration")]
+    [SerializeField] protected EnemyStatsData stats;
 
-    [Header("Combat")]
-    [SerializeField] protected float attackRange = 1f;
-    [SerializeField] protected float attackCooldown = 1f;
-
-    [Header("Knockback")]
-    [SerializeField] protected float knockbackForce = 8f;
-    [SerializeField] protected float knockbackTime = 0.15f;
-    [SerializeField] protected GameObject goldPrefab;
-
-    [Range(0,1)] [SerializeField] float dropChance = 0.5f;
-
-    [Header("Detection")]
-    public float detectionRange = 5f;
+    [HideInInspector] public float speedEnemy = 3f;
+    [HideInInspector] public float hp = 100f;
+    [HideInInspector] public float damage = 10f;
+    [HideInInspector] public float attackRange = 1f;
+    [HideInInspector] public float attackCooldown = 1f;
+    [HideInInspector] public float knockbackForce = 8f;
+    [HideInInspector] public float knockbackTime = 0.15f;
+    [HideInInspector] public GameObject goldPrefab;
+    [HideInInspector] public float dropChance = 0.5f;
+    [HideInInspector] public float detectionRange = 5f;
 
     protected float lastAttackTime = 0f;
 
@@ -33,6 +28,26 @@ public abstract class EnemyBase : MonoBehaviour
     protected bool isChasing = false;
 
     protected Room room;
+    protected virtual void Awake()
+    {
+        if (stats != null)
+        {
+            hp = stats.maxHp;
+            speedEnemy = stats.speedEnemy;
+            damage = stats.damage;
+            attackRange = stats.attackRange;
+            attackCooldown = stats.attackCooldown;
+            knockbackForce = stats.knockbackForce;
+            knockbackTime = stats.knockbackTime;
+            goldPrefab = stats.goldPrefab;
+            dropChance = stats.dropChance;
+            detectionRange = stats.detectionRange;
+        }
+        else
+        {
+            Debug.LogWarning($"Enemy {gameObject.name} chua g?n EnemyStatsData!");
+        }
+    }
 
     protected virtual void Start()
     {
@@ -190,4 +205,29 @@ public abstract class EnemyBase : MonoBehaviour
 
         Instantiate(goldPrefab, transform.position, Quaternion.identity);
     }
+
+#if UNITY_EDITOR
+    protected virtual void OnDrawGizmosSelected()
+    {
+        if (stats != null)
+        {
+            // Vẽ tầm nhìn (Màu vàng)
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, stats.detectionRange);
+
+            // Vẽ tầm đánh (Màu đỏ)
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, stats.attackRange);
+        }
+        else
+        {
+            // Dự phòng nếu chưa gán stats (trong chế độ Edit)
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, detectionRange);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRange);
+        }
+    }
+#endif
 }
+
