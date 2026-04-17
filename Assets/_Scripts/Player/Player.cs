@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     private bool isKnockedBack = false;  // Thêm flag knockback
     public float knockbackForce = 5f;  // Lực knockback
     public int gold = 0;
+    public int gachaRolls = 0;
+    public int remainingQuestions = 0;
     [SerializeField] private int bossKeyCount = 0;
     public Room CurrentRoom => currentRoom;
     public int BossKeyCount => bossKeyCount;
