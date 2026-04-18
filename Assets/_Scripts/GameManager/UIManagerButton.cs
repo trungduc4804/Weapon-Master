@@ -6,6 +6,7 @@ public class UIManagerBottom : MonoBehaviour
 {
     [SerializeField] private GameObject settingUI;
     [SerializeField] private GameObject inventoryUI;
+    [SerializeField] private GameObject miniMap;
 
     private void OnDisable()
     {
@@ -57,4 +58,23 @@ public class UIManagerBottom : MonoBehaviour
         inventoryUI.SetActive(false);
         Time.timeScale = 0;
     }   
+    public void OnPressMiniMapButton()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClick();
+        }
+
+        miniMap.SetActive(true);
+
+    }
+    public void OnPressCloseMiniMapButton()
+    {
+        if(AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClick();
+        }
+
+        miniMap.SetActive(false);
+    }
 }
