@@ -34,6 +34,12 @@ public class AudioCueLibrary : ScriptableObject
     // [SerializeField] private AudioCue menuOpen;
     // [SerializeField] private AudioCue menuClose;
 
+    [Header("Gacha & Quiz")]
+    [SerializeField] private AudioCue gachaSpin;
+    [SerializeField] private AudioCue gachaReward;
+    [SerializeField] private AudioCue quizCorrect;
+    [SerializeField] private AudioCue quizWrong;
+
     public AudioCue MainMenuMusic => mainMenuMusic;
     public AudioCue GameplayMusic => gameplayMusic;
     public AudioCue BossMusic => bossMusic;
@@ -53,4 +59,9 @@ public class AudioCueLibrary : ScriptableObject
     // public AudioCue ButtonHover => buttonHover;
     // public AudioCue MenuOpen => menuOpen;
     // public AudioCue MenuClose => menuClose;
+    
+    public AudioCue GachaSpin => gachaSpin;
+    public AudioCue GachaReward => gachaReward;
+    public AudioCue QuizCorrect => quizCorrect;
+    public AudioCue QuizWrong => quizWrong;
 }

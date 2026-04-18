@@ -28,10 +28,9 @@ public class GachaSystem : MonoBehaviour
         player.gachaRolls++;
         GachaEvents.OnGachaRollsCountChanged?.Invoke(player.gachaRolls);
     }
-
-    public void RollGacha()
+    public ShopItemData PreCalculateRoll()
     {
-        if (player == null) return;
+        if (player == null) return null;
 
         if (player.gachaRolls > 0)
         {
@@ -45,33 +44,20 @@ public class GachaSystem : MonoBehaviour
             {
                 item = dropRateData.GetRandomItem();
             }
-
-            if (item != null)
-            {
-                // Here we actually give the item to the player.
-                // Assuming it works exactly like ShopItemData
-                GiveItemToPlayer(item);
-                
-                // Fire Event for UI/Audio
-                GachaEvents.OnGachaRolled?.Invoke(item);
-                
-                // Audio
-                if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
-                {
-                    // Placeholder for Gacha Roll Sound
-                    AudioManager.Instance.PlayUI(AudioManager.Instance.CueLibrary.ButtonClick); 
-                }
-            }
+            return item;
         }
         else
         {
             // No rolls left
             GachaEvents.OnRollFailed_NoRolls?.Invoke();
+            return null;
         }
     }
 
-    private void GiveItemToPlayer(ShopItemData itemData)
+    public void GiveItemToPlayer(ShopItemData itemData)
     {
+        if (itemData == null) return;
+        
         // Re-use logic from ShopManager or QuickItemBar
         if (itemData.grantsBossKey)
         {
@@ -85,6 +71,15 @@ public class GachaSystem : MonoBehaviour
             {
                 quickItemBar.TryAddItem(itemData);
             }
+        }
+        
+        // Fire Event for UI/Audio when actually received
+        GachaEvents.OnGachaRolled?.Invoke(itemData);
+        
+        // Audio
+        if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
+        {
+            AudioManager.Instance.PlayUI(AudioManager.Instance.CueLibrary.GachaReward); 
         }
     }
 }

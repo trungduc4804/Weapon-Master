@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7eae27a53a7fb45866535cc4f13135, type: 3}
+  m_Name: NewGachaDropRateData
+  m_EditorClassIdentifier: Assembly-CSharp::GachaDropRateData
+  items:
+  - itemData: {fileID: 11400000, guid: 0d994c2d76ee0464ea4d3cca297fa0c5, type: 2}
+    dropWeight: 20
+  - itemData: {fileID: 11400000, guid: 98040f9c5e0d96642b3565e95d45c2a5, type: 2}
+    dropWeight: 30
+  - itemData: {fileID: 11400000, guid: 2b6ec557e73c65c4aa4fc8b344e06fe5, type: 2}
+    dropWeight: 50

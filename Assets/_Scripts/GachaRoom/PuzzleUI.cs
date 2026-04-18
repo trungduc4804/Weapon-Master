@@ -145,17 +145,17 @@ public class PuzzleUI : MonoBehaviour
         if (isCorrect)
         {
             selectedImage.color = correctBtnColor;
-            // Play âm thanh Đúng (VD)
+            // Play âm thanh Đúng 
             if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.CueLibrary.BuffPickup); 
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.CueLibrary.QuizCorrect); 
         }
         else
         {
             selectedImage.color = wrongBtnColor;
             correctImage.color = correctBtnColor; // Show cho player biết đáp án đúng
-            // Play âm thanh Sai (VD)
+            // Play âm thanh Sai 
             if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.CueLibrary.PlayerHurt);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.CueLibrary.QuizWrong);
         }
 
         // Đợi 1 thời gian cho player nhìn kết quả (Dùng WaitForSecondsRealtime vì Time.timeScale = 0)

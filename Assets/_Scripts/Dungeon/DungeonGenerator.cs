@@ -6,6 +6,7 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject startRoom;
     public GameObject bossRoom;
     public GameObject shopRoom; // Add shopRoom reference
+    public GameObject gachaRoom; // Add gachaRoom reference
     public GameObject[] normalRooms;
 
     public int roomCount = 8;
@@ -62,6 +63,7 @@ public class DungeonGenerator : MonoBehaviour
 
         SpawnBossRoom();
         SpawnShopRoom();
+        SpawnGachaRoom();
 
         ConnectRooms();
 
@@ -100,6 +102,18 @@ public class DungeonGenerator : MonoBehaviour
         Vector2Int pos = possiblePositions[index];
 
         SpawnRoom(shopRoom, pos);
+        possiblePositions.RemoveAt(index);
+    }
+
+    void SpawnGachaRoom()
+    {
+        if (gachaRoom == null) return;
+        if (possiblePositions.Count == 0) return;
+
+        int index = Random.Range(0, possiblePositions.Count);
+        Vector2Int pos = possiblePositions[index];
+
+        SpawnRoom(gachaRoom, pos);
         possiblePositions.RemoveAt(index);
     }
 
