@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f10ee2363f8c44e95b6544fc225565, type: 3}
+  m_Name: 1
+  m_EditorClassIdentifier: Assembly-CSharp::QuestionData
+  questionText: "chu\u1ED3n chu\u1ED3n bay th\u1EA5p th\xEC m\u01B0a, bay cao th\xEC
+    n\u1EAFng bay v\u1EEBa th\xEC ... "
+  answers:
+  - "th\xF4i"
+  - "r\xE2m"
+  - sao
+  - "ph\u1EA3i ch\u1ECBu"
+  correctIndex: 1
