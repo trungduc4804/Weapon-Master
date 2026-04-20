@@ -2000,7 +2000,7 @@ GameObject:
   - component: {fileID: 1211370832}
   - component: {fileID: 1211370836}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UIMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

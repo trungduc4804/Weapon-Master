@@ -68,7 +68,11 @@ public class PuzzleSystem : MonoBehaviour
         
         if (isCorrect)
         {
-            // Give reward (Gacha Roll) via event instead of strict coupling
+            // Give reward (Gacha Roll) directly
+            player.gachaRolls++;
+            GachaEvents.OnGachaRollsCountChanged?.Invoke(player.gachaRolls);
+            
+            // Keep the event for other potential listeners
             GachaEvents.OnPuzzleSolved?.Invoke();
         }
 

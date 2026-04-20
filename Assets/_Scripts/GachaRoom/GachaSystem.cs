@@ -14,20 +14,12 @@ public class GachaSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        GachaEvents.OnPuzzleSolved += GiveGachaRoll;
     }
 
     private void OnDisable()
     {
-        GachaEvents.OnPuzzleSolved -= GiveGachaRoll;
     }
 
-    private void GiveGachaRoll()
-    {
-        if (player == null) return;
-        player.gachaRolls++;
-        GachaEvents.OnGachaRollsCountChanged?.Invoke(player.gachaRolls);
-    }
     public ShopItemData PreCalculateRoll()
     {
         if (player == null) return null;
