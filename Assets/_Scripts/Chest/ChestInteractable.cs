@@ -6,12 +6,13 @@ public class ChestInteractable : MonoBehaviour
     [Tooltip("Khoảng cách tối đa để người chơi tương tác với rương.")]
     public float interactDistance = 2f;
 
-    private InventoryChestUI inventoryUI;
+    private ChestUIManager inventoryUI;
     private Transform playerTransform;
 
     private void Start()
     {
-        inventoryUI = FindFirstObjectByType<InventoryChestUI>();
+        inventoryUI = transform.parent?.GetComponentInChildren<ChestUIManager>(true);
+        if (inventoryUI == null) inventoryUI = FindFirstObjectByType<ChestUIManager>(FindObjectsInactive.Include);
         
         Player player = FindFirstObjectByType<Player>();
         if (player != null)
@@ -24,7 +25,8 @@ public class ChestInteractable : MonoBehaviour
     {
         if (inventoryUI == null)
         {
-            inventoryUI = FindFirstObjectByType<InventoryChestUI>();
+            inventoryUI = transform.parent?.GetComponentInChildren<ChestUIManager>(true);
+            if (inventoryUI == null) inventoryUI = FindFirstObjectByType<ChestUIManager>(FindObjectsInactive.Include);
         }
 
         if (inventoryUI == null) return;
@@ -39,7 +41,8 @@ public class ChestInteractable : MonoBehaviour
             }
         }
 
-        inventoryUI.OpenChestUI();
+        inventoryUI.gameObject.SetActive(true);
+        inventoryUI.OpenChest();
     }
 
     private void OnMouseDown()

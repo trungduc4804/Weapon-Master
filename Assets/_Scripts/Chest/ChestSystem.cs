@@ -37,4 +37,13 @@ public class ChestSystem : MonoBehaviour
         storedItems.Add(item);
         OnChestChanged?.Invoke();
     }
+
+    public void RemoveItem(ShopItemData item)
+    {
+        if (storedItems.Contains(item))
+        {
+            storedItems.Remove(item);
+            OnChestChanged?.Invoke();
+        }
+    }
 }

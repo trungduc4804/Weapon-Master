@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e48edef5529094419898d1477451822, type: 3}
+  m_Name: ItemSwoord
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
+  itemName: Sword 1
+  itemIcon: {fileID: -2188655523723985976, guid: 5531b8992db7fb84691b1804f64a391f, type: 3}
+  weaponPrefab: {fileID: 7884602946247659552, guid: b7ba7cd98b81abc40bf9bd5aaf93e3ea, type: 3}
+  price: 20
+  cooldown: 3
+  addToQuickItemBar: 1
+  effectType: 4
+  effectValue: 10
+  grantsBossKey: 0
+  bossKeyAmount: 1
+  maxPurchaseCount: -1

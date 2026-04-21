@@ -1,7 +1,10 @@
 using UnityEngine;
-
+using System;
 public class PlayerAttack : MonoBehaviour
 {
+    public static event Action<int> OnWeaponSwitched; 
+    public static event Action<int, WeaponBase> OnWeaponEquippedToSlot;
+
     [Header("Current Weapon")]
     public WeaponBase currentWeapon;
 
@@ -15,19 +18,19 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-        SwitchWeapon(weaponSlot1);
+        SwitchWeapon(weaponSlot1, 1);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(slot1Key))
         {
-            SwitchWeapon(weaponSlot1);
+            SwitchWeapon(weaponSlot1, 1);
         }
 
         if (Input.GetKeyDown(slot2Key))
         {
-            SwitchWeapon(weaponSlot2);
+            SwitchWeapon(weaponSlot2, 2);
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -37,7 +40,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void SwitchWeapon(WeaponBase newWeapon)
+    void SwitchWeapon(WeaponBase newWeapon, int slotIndex)
     {
         if (newWeapon == null)
         {
@@ -52,6 +55,7 @@ public class PlayerAttack : MonoBehaviour
         currentWeapon = newWeapon;
         currentWeapon.gameObject.SetActive(true);
 
+        OnWeaponSwitched?.Invoke(slotIndex);
     }
 
     public void EquipWeaponToSlot(WeaponBase newWeapon, int slotIndex)
@@ -69,7 +73,8 @@ public class PlayerAttack : MonoBehaviour
                 weaponSlot1.gameObject.SetActive(false);
             
             weaponSlot1 = newWeapon;
-            if (currentWeapon == null || Input.GetKey(slot1Key)) SwitchWeapon(weaponSlot1);
+            OnWeaponEquippedToSlot?.Invoke(1, newWeapon);
+            if (currentWeapon == null || Input.GetKey(slot1Key)) SwitchWeapon(weaponSlot1, 1);
         }
         else if (slotIndex == 2)
         {
@@ -77,7 +82,8 @@ public class PlayerAttack : MonoBehaviour
                 weaponSlot2.gameObject.SetActive(false);
                 
             weaponSlot2 = newWeapon;
-            if (currentWeapon == null || Input.GetKey(slot2Key)) SwitchWeapon(weaponSlot2);
+            OnWeaponEquippedToSlot?.Invoke(2, newWeapon);
+            if (currentWeapon == null || Input.GetKey(slot2Key)) SwitchWeapon(weaponSlot2, 2);
         }
     }
 
@@ -95,3 +101,4 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 }
+

@@ -64,6 +64,21 @@ public class GachaSystem : MonoBehaviour
                 quickItemBar.TryAddItem(itemData);
             }
         }
+
+        PlayerInventory inventory = player.GetComponent<PlayerInventory>();
+        if (inventory != null)
+        {
+            if (itemData.effectType == ShopItemEffectType.WeaponUnlock && inventory.HasWeapon(itemData))
+            {
+                // Trùng vũ khí -> Đổi thành 1 Vàng
+                player.gold += 1;
+                Debug.Log("Quay trúng vũ khí ĐÃ CÓ trong túi! Đã quy đổi thành 1 Vàng.");
+            }
+            else
+            {
+                inventory.ReceiveLoot(itemData);
+            }
+        }
         
         // Fire Event for UI/Audio when actually received
         GachaEvents.OnGachaRolled?.Invoke(itemData);
