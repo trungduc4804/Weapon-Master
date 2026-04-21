@@ -5,7 +5,8 @@ public enum ShopItemEffectType
     Heal,
     DamageBoost,
     MoveSpeedBoost,
-    Gold
+    Gold,
+    WeaponUnlock
 }
 
 [CreateAssetMenu(fileName = "ShopItem", menuName = "WeaponMaster/Shop Item")]
@@ -14,6 +15,7 @@ public class ShopItemData : ScriptableObject
     [Header("Display")]
     public string itemName = "New Item";
     public Sprite itemIcon;
+    public WeaponBase weaponPrefab;
     public int price = 10;
     [Min(0f)] public float cooldown = 3f;
     public bool addToQuickItemBar = true;

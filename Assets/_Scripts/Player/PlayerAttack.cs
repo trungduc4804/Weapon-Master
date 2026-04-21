@@ -6,28 +6,28 @@ public class PlayerAttack : MonoBehaviour
     public WeaponBase currentWeapon;
 
     [Header("Weapons")]
-    public WeaponBase meleeWeapon;
-    public WeaponBase rangedWeapon;
+    public WeaponBase weaponSlot1;
+    public WeaponBase weaponSlot2;
 
     [Header("Input")]
-    [SerializeField] private KeyCode meleeWeaponKey = KeyCode.Q;
-    [SerializeField] private KeyCode rangedWeaponKey = KeyCode.E;
+    [SerializeField] private KeyCode slot1Key = KeyCode.Q;
+    [SerializeField] private KeyCode slot2Key = KeyCode.E;
 
     void Start()
     {
-        SwitchWeapon(meleeWeapon);
+        SwitchWeapon(weaponSlot1);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(meleeWeaponKey))
+        if (Input.GetKeyDown(slot1Key))
         {
-            SwitchWeapon(meleeWeapon);
+            SwitchWeapon(weaponSlot1);
         }
 
-        if (Input.GetKeyDown(rangedWeaponKey))
+        if (Input.GetKeyDown(slot2Key))
         {
-            SwitchWeapon(rangedWeapon);
+            SwitchWeapon(weaponSlot2);
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -54,16 +54,42 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
+    public void EquipWeaponToSlot(WeaponBase newWeapon, int slotIndex)
+    {
+        if (newWeapon == null) return;
+        
+        // Ensure weapon is attached to the player
+        newWeapon.transform.SetParent(transform);
+        newWeapon.transform.localPosition = Vector3.zero;
+        newWeapon.gameObject.SetActive(false);
+
+        if (slotIndex == 1)
+        {
+            if (weaponSlot1 != null && weaponSlot1 != currentWeapon) 
+                weaponSlot1.gameObject.SetActive(false);
+            
+            weaponSlot1 = newWeapon;
+            if (currentWeapon == null || Input.GetKey(slot1Key)) SwitchWeapon(weaponSlot1);
+        }
+        else if (slotIndex == 2)
+        {
+            if (weaponSlot2 != null && weaponSlot2 != currentWeapon) 
+                weaponSlot2.gameObject.SetActive(false);
+                
+            weaponSlot2 = newWeapon;
+            if (currentWeapon == null || Input.GetKey(slot2Key)) SwitchWeapon(weaponSlot2);
+        }
+    }
+
     public void AddDamage(float amount)
     {
-        if (amount <= 0f) return;
+        if (amount <= 0f || currentWeapon == null) return;
 
-        if (meleeWeapon is MeleeWeapon melee)
+        if (currentWeapon is MeleeWeapon melee)
         {
             melee.damage += amount;
         }
-
-        if (rangedWeapon is RangedWeapon ranged)
+        else if (currentWeapon is RangedWeapon ranged)
         {
             ranged.AddProjectileDamage(amount);
         }

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
 {
+    [Header("Item Data Binding")]
+    public ShopItemData originData;
+
     [Header("Audio")]
     [SerializeField] private AudioCue attackCueOverride;
 
