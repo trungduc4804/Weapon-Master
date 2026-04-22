@@ -34,14 +34,24 @@ public class Player : MonoBehaviour
             if (movement != Vector2.zero)
             {
                 animator.SetBool("isRun", true);
-                if (movement.x > 0)
-                    transform.localScale = new Vector3(1, 1, 1);
-                else if (movement.x < 0)
-                    transform.localScale = new Vector3(-1, 1, 1);
             }
             else
             {
                 animator.SetBool("isRun", false);
+            }
+
+            // Lật mặt nhân vật theo vị trí con trỏ chuột
+            if (Camera.main != null)
+            {
+                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if (mouseWorldPos.x > transform.position.x)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
+                else if (mouseWorldPos.x < transform.position.x)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
             }
         }
     }

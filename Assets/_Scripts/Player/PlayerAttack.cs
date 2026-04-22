@@ -87,6 +87,32 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    public void UnequipWeapon(int slotIndex)
+    {
+        if (slotIndex == 1)
+        {
+            if (weaponSlot1 != null)
+                weaponSlot1.gameObject.SetActive(false);
+            
+            if (currentWeapon == weaponSlot1)
+                currentWeapon = null;
+                
+            weaponSlot1 = null;
+            OnWeaponEquippedToSlot?.Invoke(1, null);
+        }
+        else if (slotIndex == 2)
+        {
+            if (weaponSlot2 != null)
+                weaponSlot2.gameObject.SetActive(false);
+                
+            if (currentWeapon == weaponSlot2)
+                currentWeapon = null;
+                
+            weaponSlot2 = null;
+            OnWeaponEquippedToSlot?.Invoke(2, null);
+        }
+    }
+
     public void AddDamage(float amount)
     {
         if (amount <= 0f || currentWeapon == null) return;

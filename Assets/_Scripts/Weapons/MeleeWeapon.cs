@@ -14,6 +14,7 @@ public class MeleeWeapon : WeaponBase
     protected override void Awake()
     {
         base.Awake();
+        isAimable = false; // Cận chiến không xoay nòng
 
         if (attackCollider != null)
         {

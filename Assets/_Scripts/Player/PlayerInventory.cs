@@ -9,6 +9,33 @@ public class PlayerInventory : MonoBehaviour
     [Header("Inventory Settings")]
     public int maxSlots = 12; // Giới hạn đúng 12 món đồ trên lưới UI
 
+    [Header("Starting Loadout")]
+    public ShopItemData startingWeapon; // Kéo vũ khí khởi đầu vào đây
+
+    private void Start()
+    {
+        // Tự động trang bị vũ khí mặc định khi mới vào Game
+        if (startingWeapon != null && startingWeapon.effectType == ShopItemEffectType.WeaponUnlock)
+        {
+            if (startingWeapon.weaponPrefab != null)
+            {
+                WeaponBase newWeapon = UnityEngine.Object.Instantiate(startingWeapon.weaponPrefab);
+                newWeapon.originData = startingWeapon;
+                
+                PlayerAttack attack = GetComponent<PlayerAttack>();
+                if (attack != null)
+                {
+                    // Lắp thẳng vào tay (Ô phím Q)
+                    attack.EquipWeaponToSlot(newWeapon, 1);
+                }
+                else
+                {
+                    AddWeapon(newWeapon);
+                }
+            }
+        }
+    }
+
     [Header("Weapons")]
     public List<WeaponBase> weapons = new List<WeaponBase>();
 

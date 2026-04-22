@@ -4,7 +4,7 @@ public class ChestUIManager : MonoBehaviour, ISlotManager
 {
     [Header("UI GameObject")]
     public GameObject chestPanel;
-
+    public GameObject chestButton;
     [Header("Tham Chiếu System")]
     public ChestSystem chestSystem;
     public PlayerInventory playerInventory;
@@ -12,7 +12,6 @@ public class ChestUIManager : MonoBehaviour, ISlotManager
     [Header("Lưới Giao Diện")]
     // Kéo 18 ô trống của Rương vào đây
     public UIItemSlot[] chestSlots; 
-    
     // Kéo 12 ô trống của Túi đồ vào đây
     public UIItemSlot[] bagSlots;
 
@@ -56,7 +55,7 @@ public class ChestUIManager : MonoBehaviour, ISlotManager
     {
         FindSystems();
         if (chestPanel == null) return;
-        
+        chestButton.SetActive(false);
         chestPanel.SetActive(true);
         Time.timeScale = 0f; // Dừng game tránh quái đánh khi cất đồ
         RefreshUI();
@@ -65,6 +64,7 @@ public class ChestUIManager : MonoBehaviour, ISlotManager
     public void CloseChest()
     {
         if (chestPanel == null) return;
+        chestButton.SetActive(true);
         chestPanel.SetActive(false);
         Time.timeScale = 1f;
     }

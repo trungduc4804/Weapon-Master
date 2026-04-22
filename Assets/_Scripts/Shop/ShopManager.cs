@@ -6,7 +6,7 @@ public class ShopManager : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private Player player;
-    [SerializeField] private QuickItemBar quickItemBar;
+    [SerializeField] private PlayerInventory playerInventory;
     [SerializeField] private bool autoFindPlayer = true;
 
     [Header("UI References")]
@@ -68,9 +68,9 @@ public class ShopManager : MonoBehaviour
             return false;
         }
 
-        if (itemData.addToQuickItemBar && quickItemBar == null)
+        if (itemData.isConsumable && playerInventory == null)
         {
-            ShowMessage("Chua gan QuickItemBar.");
+            ShowMessage("Chua gan PlayerInventory.");
             return false;
         }
 
@@ -91,11 +91,15 @@ public class ShopManager : MonoBehaviour
             return false;
         }
 
-        if (itemData.addToQuickItemBar && !quickItemBar.TryAddItem(itemData))
+        if (itemData.isConsumable)
         {
-            ShowMessage("Thanh item da day.");
-            RefreshUI(force: true);
-            return false;
+            if (playerInventory.GetEmptySlotsCount() <= 0)
+            {
+                ShowMessage("Tui do da day.");
+                RefreshUI(force: true);
+                return false;
+            }
+            playerInventory.ReceiveLoot(itemData);
         }
 
         player.gold -= price;
@@ -117,9 +121,9 @@ public class ShopManager : MonoBehaviour
             player = FindFirstObjectByType<Player>();
         }
 
-        if (quickItemBar == null && autoFindPlayer)
+        if (playerInventory == null && autoFindPlayer)
         {
-            quickItemBar = FindFirstObjectByType<QuickItemBar>();
+            playerInventory = FindFirstObjectByType<PlayerInventory>();
         }
     }
 

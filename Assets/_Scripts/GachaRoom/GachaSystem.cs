@@ -55,15 +55,6 @@ public class GachaSystem : MonoBehaviour
         {
             player.AddBossKey(itemData.bossKeyAmount);
         }
-        
-        if (itemData.addToQuickItemBar)
-        {
-            QuickItemBar quickItemBar = FindFirstObjectByType<QuickItemBar>();
-            if (quickItemBar != null)
-            {
-                quickItemBar.TryAddItem(itemData);
-            }
-        }
 
         PlayerInventory inventory = player.GetComponent<PlayerInventory>();
         if (inventory != null)

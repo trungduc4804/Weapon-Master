@@ -135,17 +135,13 @@ public class MainInventoryUI : MonoBehaviour, ISlotManager
                 if (playerInventory.GetEmptySlotsCount() > 0)
                 {
                     // Cất vô túi
-                    playerInventory.AddWeapon(clickedSlot.holdWeapon);
-                    
-                    // Tháo trên người
-                    if (clickedSlot.equipIndex == 1) playerAttack.weaponSlot1 = null;
-                    if (clickedSlot.equipIndex == 2) playerAttack.weaponSlot2 = null;
-                    
-                    // Nếu vũ khí vừa tháo trùng với vũ khí đang cầm trên tay thực, phải cất nó đi
-                    if (playerAttack.currentWeapon == clickedSlot.holdWeapon)
+                    if (clickedSlot.equipIndex == 1 || clickedSlot.equipIndex == 2)
                     {
-                        playerAttack.currentWeapon.gameObject.SetActive(false);
-                        playerAttack.currentWeapon = null;
+                        // Tháo trên người
+                        playerAttack.UnequipWeapon(clickedSlot.equipIndex);
+                        
+                        // Ném vào túi
+                        playerInventory.AddWeapon(clickedSlot.holdWeapon);
                     }
                 }
                 else
