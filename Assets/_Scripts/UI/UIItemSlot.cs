@@ -17,7 +17,7 @@ public class UIItemSlot : MonoBehaviour, IPointerClickHandler
     
     private ISlotManager slotManager;
 
-    private void Start()
+    private void Awake()
     {
         // Ẩn ban đầu
         if (iconImage != null)

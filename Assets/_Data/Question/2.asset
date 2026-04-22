@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f10ee2363f8c44e95b6544fc225565, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: Assembly-CSharp::QuestionData
-  questionText: 
+  questionText: "\t"
   answers:
   - 
   - 

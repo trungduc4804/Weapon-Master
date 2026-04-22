@@ -86,7 +86,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 4321398367205095341, guid: 5531b8992db7fb84691b1804f64a391f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 0.725, y: 0.45}
   m_AdaptiveModeThreshold: 0.5
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007f83efc9181ed4198562d23ad73e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedWeapon
+  isAimable: 1
   originData: {fileID: 0}
   attackCueOverride:
     clips: []

@@ -18,7 +18,6 @@ public class ShopItemData : ScriptableObject
     public WeaponBase weaponPrefab;
     public int price = 10;
     [Min(0f)] public float cooldown = 3f;
-    [UnityEngine.Serialization.FormerlySerializedAs("addToQuickItemBar")]
     public bool isConsumable = true;
 
     [Header("Effect")]

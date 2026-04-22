@@ -40,18 +40,14 @@ public class Player : MonoBehaviour
                 animator.SetBool("isRun", false);
             }
 
-            // Lật mặt nhân vật theo vị trí con trỏ chuột
-            if (Camera.main != null)
+            // Lật mặt nhân vật theo hướng di chuyển
+            if (movement.x > 0)
             {
-                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                if (mouseWorldPos.x > transform.position.x)
-                {
-                    transform.localScale = new Vector3(1, 1, 1);
-                }
-                else if (mouseWorldPos.x < transform.position.x)
-                {
-                    transform.localScale = new Vector3(-1, 1, 1);
-                }
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else if (movement.x < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
             }
         }
     }

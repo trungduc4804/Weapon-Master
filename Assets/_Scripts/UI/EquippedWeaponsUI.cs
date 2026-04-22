@@ -47,8 +47,19 @@ public class EquippedWeaponsUI : MonoBehaviour
 
     private void HandleWeaponSwitched(int activeSlotIndex)
     {
-        // Bật highlight sáng màu ở slot đang cầm, tắt ở slot còn lại
-        if (slot1Highlight != null) slot1Highlight.enabled = (activeSlotIndex == 1);
-        if (slot2Highlight != null) slot2Highlight.enabled = (activeSlotIndex == 2);
+        // Thay vì tắt component (làm mất luôn khung nền), ta đổi màu/độ mờ để tạo hiệu ứng highlight
+        if (slot1Highlight != null)
+        {
+            Color c = slot1Highlight.color;
+            c.a = (activeSlotIndex == 1) ? 1f : 0.4f;
+            slot1Highlight.color = c;
+        }
+        
+        if (slot2Highlight != null)
+        {
+            Color c = slot2Highlight.color;
+            c.a = (activeSlotIndex == 2) ? 1f : 0.4f;
+            slot2Highlight.color = c;
+        }
     }
 }

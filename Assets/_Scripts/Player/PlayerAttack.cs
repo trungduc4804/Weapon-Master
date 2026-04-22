@@ -95,7 +95,10 @@ public class PlayerAttack : MonoBehaviour
                 weaponSlot1.gameObject.SetActive(false);
             
             if (currentWeapon == weaponSlot1)
+            {
                 currentWeapon = null;
+                OnWeaponSwitched?.Invoke(0);
+            }
                 
             weaponSlot1 = null;
             OnWeaponEquippedToSlot?.Invoke(1, null);
@@ -106,7 +109,10 @@ public class PlayerAttack : MonoBehaviour
                 weaponSlot2.gameObject.SetActive(false);
                 
             if (currentWeapon == weaponSlot2)
+            {
                 currentWeapon = null;
+                OnWeaponSwitched?.Invoke(0);
+            }
                 
             weaponSlot2 = null;
             OnWeaponEquippedToSlot?.Invoke(2, null);

@@ -44,17 +44,12 @@ public abstract class WeaponBase : MonoBehaviour
 
             transform.localRotation = Quaternion.Euler(0, 0, angle);
 
-            // Xử lý chống ngược súng (Flip Y) nếu chuột nằm bên trái nhân vật
-            // Chuột nằm bên trái khi góc > 90 hoặc < -90
-            bool isAimingLeft = Mathf.Abs(Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg) > 90f;
-            
+            // Xử lý chống ngược súng (Flip Y)
+            // Vũ khí bị lộn ngược khi góc local vượt quá 90 độ hoặc nhỏ hơn -90 độ
+            // (tức là chĩa sang trái trong không gian local)
             if (spriteRenderer != null)
             {
-                // Nếu súng chỉa sang trái thì phải FlipY để súng không lộn ngược bụng.
-                // Do Player tự lật ScaleX khi quay trái, Súng cũng bị lật ScaleX theo!
-                // Vì vậy, ta phải kết hợp: Nếu Player đang lật (-1) và súng cũng lật (-1) -> triệt tiêu nhau.
-                // Nhưng Player đã tự lật hướng mặt rồi, nên ta chỉ cần Flip Y khi góc local yêu cầu.
-                spriteRenderer.flipY = isAimingLeft;
+                spriteRenderer.flipY = Mathf.Abs(angle) > 90f;
             }
         }
         else
