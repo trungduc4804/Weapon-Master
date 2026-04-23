@@ -64,7 +64,7 @@ public class PlayerAttack : MonoBehaviour
         
         // Ensure weapon is attached to the player
         newWeapon.transform.SetParent(transform);
-        newWeapon.transform.localPosition = Vector3.zero;
+        newWeapon.transform.localPosition = new Vector3(0.4f, 0, 0);
         newWeapon.gameObject.SetActive(false);
 
         if (slotIndex == 1)

@@ -22,6 +22,15 @@ public class MeleeWeapon : WeaponBase
         }
     }
 
+    private void OnDisable()
+    {
+        isAttacking = false;
+        if (attackCollider != null)
+        {
+            attackCollider.enabled = false;
+        }
+    }
+
     public override void Attack()
     {
         if (isAttacking || attackCollider == null) return;

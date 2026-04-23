@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8f10ee2363f8c44e95b6544fc225565, type: 3}
-  m_Name: 2
+  m_Name: 3
   m_EditorClassIdentifier: Assembly-CSharp::QuestionData
-  questionText: "chim kh\xF4n chim \u0111\u1EADu tr\xEAn c\xE0nh, b\u01B0\u1EDBm
-    kh\xF4n b\u01B0\u1EDBm \u0111\u1EADu tr\xEAn ...\t"
+  questionText: "chim kia \u0111\u1EE9ng gi\u1EEFa r\u1EEBng ch\xE8, b\u01B0\u1EDBm
+    kia bay l\u1EA1i l\xE0 ...\t"
   answers:
-  - "\u0111\u1EA7u con chim"
-  - "c\xE0nh "
-  - "tr\u1EDDi"
-  - "c\xE2y hoa"
+  - 
+  - 
+  - 
+  - "qu\xE8 con chim"
   correctIndex: 0

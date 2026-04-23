@@ -37,14 +37,16 @@ MonoBehaviour:
     loop: 0
     outputGroup: {fileID: 0}
   doorOpen:
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: ab15ebfaef2231e4abe9652dfcb9641c, type: 3}
     volume: 1
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
     loop: 0
     outputGroup: {fileID: 0}
   doorClose:
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 34143d63c3b847d44925858657e0799b, type: 3}
     volume: 1
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
@@ -137,21 +139,28 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 0
     outputGroup: {fileID: 0}
-  buttonHover:
+  gachaSpin:
     clips: []
     volume: 1
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
     loop: 0
     outputGroup: {fileID: 0}
-  menuOpen:
+  gachaReward:
     clips: []
     volume: 1
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
     loop: 0
     outputGroup: {fileID: 0}
-  menuClose:
+  quizCorrect:
+    clips: []
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    spatialBlend: 0
+    loop: 0
+    outputGroup: {fileID: 0}
+  quizWrong:
     clips: []
     volume: 1
     pitchRange: {x: 1, y: 1}

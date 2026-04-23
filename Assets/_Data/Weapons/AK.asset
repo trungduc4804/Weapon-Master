@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e48edef5529094419898d1477451822, type: 3}
+  m_Name: AK
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
+  itemName: AK47
+  itemIcon: {fileID: -3391257396490946495, guid: 5531b8992db7fb84691b1804f64a391f, type: 3}
+  weaponPrefab: {fileID: 499043601732148233, guid: c10b73195fbf00c4c9b51941b76cba77, type: 3}
+  price: 10
+  cooldown: 3
+  isConsumable: 1
+  effectType: 4
+  effectValue: 10
+  grantsBossKey: 0
+  bossKeyAmount: 1
+  maxPurchaseCount: -1

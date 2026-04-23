@@ -30,9 +30,6 @@ public class AudioCueLibrary : ScriptableObject
 
     [Header("UI")]
     [SerializeField] private AudioCue buttonClick;
-    // [SerializeField] private AudioCue buttonHover;
-    // [SerializeField] private AudioCue menuOpen;
-    // [SerializeField] private AudioCue menuClose;
 
     [Header("Gacha & Quiz")]
     [SerializeField] private AudioCue gachaSpin;
@@ -56,9 +53,6 @@ public class AudioCueLibrary : ScriptableObject
     public AudioCue HealthPickup => healthPickup;
     public AudioCue BuffPickup => buffPickup;
     public AudioCue ButtonClick => buttonClick;
-    // public AudioCue ButtonHover => buttonHover;
-    // public AudioCue MenuOpen => menuOpen;
-    // public AudioCue MenuClose => menuClose;
     
     public AudioCue GachaSpin => gachaSpin;
     public AudioCue GachaReward => gachaReward;

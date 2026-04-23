@@ -23,3 +23,5 @@ MonoBehaviour:
     dropWeight: 50
   - itemData: {fileID: 11400000, guid: 79372279f6d114249a21abc5916a10dc, type: 2}
     dropWeight: 50
+  - itemData: {fileID: 11400000, guid: 37fa95e1a5021a840a5ddae3220aa786, type: 2}
+    dropWeight: 50
