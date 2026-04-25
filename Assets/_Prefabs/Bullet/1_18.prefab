@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281e7118fdda44b4c99f01bbe5ec3ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FirePoint
-  damage: 20
+  damage: 100
   lifeTime: 3
 --- !u!61 &5990838522094557108
 BoxCollider2D:

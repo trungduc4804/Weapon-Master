@@ -19,7 +19,7 @@ public class GachaUI : MonoBehaviour
     [Header("Animation View (Trong Khung Trắng)")]
     [SerializeField] private Image rewardIconImage;
     [SerializeField] private TMP_Text rewardNameText;
-    [SerializeField] private float spinningDuration = 3f;
+    [SerializeField] private float spinningDuration = 4f;
 
     private bool isSpinning = false;
 
@@ -100,7 +100,13 @@ public class GachaUI : MonoBehaviour
                 possibleItems.Add(item.itemData);
         }
 
-        // Loop đổi hình liên tục trong 3 giây
+        // Phát âm thanh quay 4 giây (chỉ phát 1 lần đầu tiên)
+        if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
+        {
+            AudioManager.Instance.PlayUI(AudioManager.Instance.CueLibrary.GachaSpin);
+        }
+
+        // Loop đổi hình liên tục
         // Dùng WaitForSecondsRealtime vì Time.timeScale đang = 0
         while (timer < spinningDuration)
         {
@@ -118,17 +124,13 @@ public class GachaUI : MonoBehaviour
                 }
             }
 
-            // Phát âm thanh tiếng Tạch tạch lạch cạch
-            if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
-            {
-                AudioManager.Instance.PlayUI(AudioManager.Instance.CueLibrary.GachaSpin);
-            }
-
-            yield return new WaitForSecondsRealtime(currentDelay);
-            
+            yield return new WaitForSecondsRealtime(currentDelay); 
             timer += currentDelay;
-            // Tăng delay lên một chút để tạo cảm giác vòng quay Gacha quay chậm dần
-            currentDelay = Mathf.Lerp(0.05f, 0.4f, timer / spinningDuration); 
+            //Tăng delay lên một chút để tạo cảm giác vòng quay Gacha quay chậm dần
+            float t = Mathf.Clamp01(timer / spinningDuration);
+            // Dùng t * t * t giúp vòng quay giữ tốc độ nhanh ở phần lớn thời gian đầu,
+            // và chỉ thực sự chậm lại dần (delay tăng mạnh) ở những giây cuối cùng.
+            currentDelay = Mathf.Lerp(0.05f, 0.6f, t * t * t);
         }
 
         // ---- KẾT THÚC ANIMATION ----

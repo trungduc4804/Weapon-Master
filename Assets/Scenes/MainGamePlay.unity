@@ -8475,7 +8475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
   maxSlots: 12
-  startingWeapon: {fileID: 11400000, guid: 26a02edd4fa9ea64db7f6a0576f4ba08, type: 2}
+  startingWeapon: {fileID: 11400000, guid: 37fa95e1a5021a840a5ddae3220aa786, type: 2}
   weapons: []
   consumeItems: []
 --- !u!1 &2087897586

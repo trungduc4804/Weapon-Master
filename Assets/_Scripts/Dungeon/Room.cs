@@ -68,7 +68,7 @@ public class Room : MonoBehaviour
 
         if (cleared)
         {
-            OpenDoors();
+            OpenDoors(false);
             return;
         }
 
@@ -81,7 +81,7 @@ public class Room : MonoBehaviour
             }
             else
             {
-                OpenDoors();
+                OpenDoors(false);
             }
             return;
         }
@@ -99,13 +99,13 @@ public class Room : MonoBehaviour
             else
             {
                 cleared = true;
-                OpenDoors();
+                OpenDoors(false);
             }
         }
         else
         {
             cleared = true;
-            OpenDoors();
+            OpenDoors(false);
         }
     }
 
@@ -159,31 +159,31 @@ public class Room : MonoBehaviour
         CloseDoors();
     }
 
-    public void CloseDoors()
+    public void CloseDoors(bool playSound = true)
     {
         if (hasTop && doorTop) 
         {
-            doorTop.SetClosed(true);
+            doorTop.SetClosed(true, playSound);
         }
         if (hasBottom && doorBottom) 
         {
-            doorBottom.SetClosed(true);
+            doorBottom.SetClosed(true, playSound);
         }
         if (hasLeft && doorLeft) 
         {
-            doorLeft.SetClosed(true);
+            doorLeft.SetClosed(true, playSound);
         }
         if (hasRight && doorRight) 
         {
-            doorRight.SetClosed(true);
+            doorRight.SetClosed(true, playSound);
         }
     }
 
-    void OpenDoors()
+    public void OpenDoors(bool playSound = true)
     {
-        if (hasTop && doorTop) doorTop.SetClosed(false);
-        if (hasBottom && doorBottom) doorBottom.SetClosed(false);
-        if (hasLeft && doorLeft) doorLeft.SetClosed(false);
-        if (hasRight && doorRight) doorRight.SetClosed(false);
+        if (hasTop && doorTop) doorTop.SetClosed(false, playSound);
+        if (hasBottom && doorBottom) doorBottom.SetClosed(false, playSound);
+        if (hasLeft && doorLeft) doorLeft.SetClosed(false, playSound);
+        if (hasRight && doorRight) doorRight.SetClosed(false, playSound);
     }
 }

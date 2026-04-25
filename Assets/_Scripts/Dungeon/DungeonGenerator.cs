@@ -173,10 +173,10 @@ public class DungeonGenerator : MonoBehaviour
 
             room.SetDoors(hasTop, hasBottom, hasLeft, hasRight);
 
-            if (room.doorTop) room.doorTop.SetClosed(!hasTop);
-            if (room.doorBottom) room.doorBottom.SetClosed(!hasBottom);
-            if (room.doorLeft) room.doorLeft.SetClosed(!hasLeft);
-            if (room.doorRight) room.doorRight.SetClosed(!hasRight);
+            if (room.doorTop) room.doorTop.SetClosed(!hasTop, false);
+            if (room.doorBottom) room.doorBottom.SetClosed(!hasBottom, false);
+            if (room.doorLeft) room.doorLeft.SetClosed(!hasLeft, false);
+            if (room.doorRight) room.doorRight.SetClosed(!hasRight, false);
         }
     }
 

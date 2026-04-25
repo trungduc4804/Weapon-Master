@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioCueLibrary
   mainMenuMusic:
     clips:
-    - {fileID: 0}
     - {fileID: 8300000, guid: e646329b1d20bb04c8ecf2396b888e45, type: 3}
     volume: 1
     pitchRange: {x: 1, y: 1}
@@ -39,7 +38,7 @@ MonoBehaviour:
   doorOpen:
     clips:
     - {fileID: 8300000, guid: ab15ebfaef2231e4abe9652dfcb9641c, type: 3}
-    volume: 1
+    volume: 0.555
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
     loop: 0
@@ -47,7 +46,7 @@ MonoBehaviour:
   doorClose:
     clips:
     - {fileID: 8300000, guid: 34143d63c3b847d44925858657e0799b, type: 3}
-    volume: 1
+    volume: 0.612
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
     loop: 0
@@ -140,8 +139,9 @@ MonoBehaviour:
     loop: 0
     outputGroup: {fileID: 0}
   gachaSpin:
-    clips: []
-    volume: 1
+    clips:
+    - {fileID: 8300000, guid: 9f9e93157aefd10459707d998f54c5e7, type: 3}
+    volume: 0.5
     pitchRange: {x: 1, y: 1}
     spatialBlend: 0
     loop: 0

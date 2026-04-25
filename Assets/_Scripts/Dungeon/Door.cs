@@ -19,19 +19,19 @@ public class Door : MonoBehaviour
         }
     }
 
-    public void SetClosed(bool closed)
+    public void SetClosed(bool closed, bool playSound = true)
     {
         desiredClosedState = closed;
-        ApplyState();
+        ApplyState(playSound);
     }
 
-    public void SetLocked(bool locked)
+    public void SetLocked(bool locked, bool playSound = true)
     {
         isLocked = locked;
-        ApplyState();
+        ApplyState(playSound);
     }
 
-    private void ApplyState()
+    private void ApplyState(bool playSound = true)
     {
         bool closed = desiredClosedState || isLocked;
 
@@ -52,7 +52,7 @@ public class Door : MonoBehaviour
 
         lastClosedState = closed;
 
-        if (AudioManager.Instance == null || AudioManager.Instance.CueLibrary == null)
+        if (!playSound || AudioManager.Instance == null || AudioManager.Instance.CueLibrary == null)
         {
             return;
         }
