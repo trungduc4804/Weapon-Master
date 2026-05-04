@@ -23,6 +23,12 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        // TẢI DỮ LIỆU: Lấy số vàng đã lưu từ trước
+        if (SaveManager.Instance != null)
+        {
+            gold = SaveManager.Instance.gameData.totalGold;
+        }
     }
 
     void Update()
@@ -157,6 +163,17 @@ public class Player : MonoBehaviour
     {
         rb.linearVelocity = Vector2.zero;
         animator.SetBool("isDie", true);
+
+        // LƯU TIẾN TRÌNH KHI CHẾT
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.gameData.totalGold = gold;
+            // Ví dụ: Nếu bạn muốn lưu kỷ lục level
+            // if (currentRoomNumber > SaveManager.Instance.gameData.highscore) 
+            //     SaveManager.Instance.gameData.highscore = currentRoomNumber;
+            
+            SaveManager.Instance.SaveGame();
+        }
 
         if (AudioManager.Instance != null && AudioManager.Instance.CueLibrary != null)
         {

@@ -20,6 +20,12 @@ public class UIManagerBottom : MonoBehaviour
             AudioManager.Instance.PlayButtonClick();
         }
 
+        // --- RESET TIẾN TRÌNH ---
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.DeleteSave();
+        }
+
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

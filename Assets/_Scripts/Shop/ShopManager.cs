@@ -105,6 +105,13 @@ public class ShopManager : MonoBehaviour
         player.gold -= price;
         purchasedCounts[itemData] = purchasedCount + 1;
 
+        // Cập nhật và lưu dữ liệu ngay khi mua đồ thành công
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.gameData.totalGold = player.gold;
+            SaveManager.Instance.SaveGame();
+        }
+
         if (itemData.grantsBossKey)
         {
             player.AddBossKey(itemData.bossKeyAmount);
