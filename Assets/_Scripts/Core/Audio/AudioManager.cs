@@ -405,6 +405,25 @@ public class AudioManager : MonoBehaviour
         {
             PlaySceneMusic(scene.name, false);
         }
+
+        // Tự động tắt âm thanh 1 giây khi vào cảnh Gameplay để tránh tiếng ồn khởi tạo
+        if (gameplaySceneNames.Contains(scene.name))
+        {
+            StartCoroutine(MuteTemporarilyRoutine(1f));
+        }
+    }
+
+    private IEnumerator MuteTemporarilyRoutine(float duration)
+    {
+        // Tắt âm thanh tổng
+        float originalVolume = AudioListener.volume;
+        AudioListener.volume = 0;
+
+        // Chờ 1 giây (dùng Realtime để không bị ảnh hưởng bởi TimeScale)
+        yield return new WaitForSecondsRealtime(duration);
+
+        // Trả lại âm thanh ban đầu
+        AudioListener.volume = masterVolume;
     }
 
     private AudioSource GetAvailableSfxSource()
