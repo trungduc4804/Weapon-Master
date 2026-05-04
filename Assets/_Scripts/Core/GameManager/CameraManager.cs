@@ -9,18 +9,23 @@ public class CameraManager : MonoBehaviour
 
     private bool isMoving = false;
 
+    private Vector3 currentTargetPosition;
+
     void Awake()
     {
         Instance = this;
+        currentTargetPosition = transform.position;
     }
 
     public void MoveToRoom(Room room)
     {
         if (room == null) return;
-        if (isMoving) return;
-
+        
         Vector3 target = room.transform.position;
         target.z = -10;
+        currentTargetPosition = target;
+
+        if (isMoving) return;
 
         StartCoroutine(SmoothMove(target));
     }
@@ -54,6 +59,30 @@ public class CameraManager : MonoBehaviour
         Vector3 pos = room.transform.position;
         pos.z = -10;
 
+        currentTargetPosition = pos;
         transform.position = pos;
+    }
+
+    public void Shake(float duration, float magnitude)
+    {
+        StartCoroutine(ShakeRoutine(duration, magnitude));
+    }
+
+    private IEnumerator ShakeRoutine(float duration, float magnitude)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+            transform.position = new Vector3(currentTargetPosition.x + x, currentTargetPosition.y + y, currentTargetPosition.z);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = currentTargetPosition;
     }
 }

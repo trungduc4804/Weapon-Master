@@ -19,7 +19,15 @@ public class RangedWeapon : WeaponBase
 
         Vector2 direction = (mouseWorldPos - firePoint.position).normalized;
 
-        GameObject projectile = ObjectPoolManager.Instance.Get(projectilePrefab, firePoint.position, Quaternion.identity);
+        if (CorePoolManager.Instance == null)
+        {
+            return;
+        }
+
+        Vector3 spawnPos = firePoint.position;
+        spawnPos.z = 0f;
+
+        GameObject projectile = CorePoolManager.Instance.Get(projectilePrefab, spawnPos, Quaternion.identity);
 
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         if (rb != null)

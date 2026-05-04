@@ -1,9 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPoolManager : MonoBehaviour
+public class PoolMember : MonoBehaviour
 {
-    public static ObjectPoolManager Instance { get; private set; }
+    public GameObject prefab;
+}
+
+public class CorePoolManager : MonoBehaviour
+{
+    public static CorePoolManager Instance { get; private set; }
 
     private readonly Dictionary<GameObject, Queue<GameObject>> pools = new Dictionary<GameObject, Queue<GameObject>>();
 
@@ -31,18 +36,20 @@ public class ObjectPoolManager : MonoBehaviour
         if (pools[prefab].Count > 0)
         {
             obj = pools[prefab].Dequeue();
-            if (obj == null) // Đề phòng trường hợp object bị destroy ngoài ý muốn
+            if (obj == null)
             {
                 return Get(prefab, position, rotation);
             }
             
-            obj.SetActive(true);
+            // Gán vị trí TRƯỚC khi SetActive để OnEnable lấy đúng tọa độ
             obj.transform.position = position;
             obj.transform.rotation = rotation;
+            obj.SetActive(true);
         }
         else
         {
             obj = Instantiate(prefab, position, rotation);
+            obj.SetActive(true);
             PoolMember member = obj.AddComponent<PoolMember>();
             member.prefab = prefab;
         }
@@ -57,7 +64,6 @@ public class ObjectPoolManager : MonoBehaviour
         PoolMember member = obj.GetComponent<PoolMember>();
         if (member == null)
         {
-            Debug.LogWarning($"Object {obj.name} khong thuoc ve bat ky Pool nao.");
             Destroy(obj);
             return;
         }

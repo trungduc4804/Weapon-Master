@@ -9,6 +9,16 @@ public class FirePoint : MonoBehaviour
     void OnEnable()
     {
         timer = lifeTime;
+        // Đảm bảo tọa độ Z luôn bằng 0
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+        
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero; // Reset vận tốc cũ
+            rb.angularVelocity = 0f;
+            rb.WakeUp();
+        }
     }
 
     void Update()
@@ -16,12 +26,17 @@ public class FirePoint : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            ReturnToPool();
+            ReturnToPool("Timeout");
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // BỎ QUA các vùng kích hoạt (Trigger) HOẶC va chạm với chính Player
+        if (collision.isTrigger || collision.CompareTag("Player"))
+        {
+            return;
+        }
         if (collision.CompareTag("Enemy"))
         {
             EnemyBase enemy = collision.GetComponent<EnemyBase>();
@@ -29,20 +44,19 @@ public class FirePoint : MonoBehaviour
             {
                 enemy.TakeDamage(damage);
             }
-
-            ReturnToPool();
+            ReturnToPool("Hit Enemy");
         }
-        else if (collision.CompareTag("Wall")) // Giả định có tag Wall để đạn biến mất khi đập tường
+        else if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Default", "Obstacle")) != 0) 
         {
-            ReturnToPool();
+            ReturnToPool("Hit Wall/Obstacle");
         }
     }
 
-    private void ReturnToPool()
+    private void ReturnToPool(string reason = "Lifetime/Other")
     {
-        if (ObjectPoolManager.Instance != null)
+        if (CorePoolManager.Instance != null)
         {
-            ObjectPoolManager.Instance.Release(gameObject);
+            CorePoolManager.Instance.Release(gameObject);
         }
         else
         {

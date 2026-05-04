@@ -62,6 +62,12 @@ public class Player : MonoBehaviour
             AudioManager.Instance.PlaySFX(AudioManager.Instance.CueLibrary.PlayerHurt);
         }
 
+        // --- ADDED SCREEN SHAKE ---
+        if (CameraManager.Instance != null)
+        {
+            CameraManager.Instance.Shake(0.2f, 0.15f);
+        }
+
         if (health <= 0)
         {
             Die();
