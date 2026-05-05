@@ -1,109 +1,58 @@
-# WeaponMaster - Script Architecture
+# Weapon Master - 2D Roguelike Action Game
 
-## Tổng quan
-Dự án được tổ chức theo các bộ module chuyên biệt bên trong `Assets/_Scripts`:
-- `Dungeon`: Tự động tạo bản đồ phòng ngẫu nhiên, đóng/mở cửa, kích hoạt trận đấu với quái vật, hiển thị sương mù (fog-of-war) trên Minimap và tạo phòng Cửa hàng (Shop).
-- `Enemy`: Logic điều khiển AI quái vật, hệ thống máy trạng thái (state machine), và các biến thể quái vật (Skeleton) / Boss.
-- `Player`: Điều khiển di chuyển, nhận sát thương, hệ thống vũ khí cận chiến và tấn công tầm xa.
-- `Pathfinding`: Thuật toán tìm đường A* tự code tay hoàn toàn (`Grid2D`, `Node`, `Pathfinding`, `Heap`).
-- `Item`: Vật phẩm rớt ra trên sàn, hệ thống nhặt đồ và thanh thao tác nhanh vật phẩm (`QuickItemBar`).
-- `Shop`: Hệ thống quản lý cửa hàng mua bán, UI cửa hàng và Trigger tương tác vật lý.
-- `Audio`: Quản lý tổng thể hiệu ứng âm thanh, nhạc nền, cài đặt âm lượng bằng UI.
-- `GameManager`: Quản lý Camera chính, Minimap Camera và các giao diện người dùng (UI) HUD.
+Weapon Master là một trò chơi hành động Roguelike 2D được xây dựng bằng Unity Engine. Trò chơi tập trung vào cơ chế chiến đấu linh hoạt, hệ thống hầm ngục ngẫu nhiên và các cơ chế quản lý dữ liệu tối ưu, mang lại trải nghiệm thử thách và lôi cuốn cho người chơi.
 
-## Cấu trúc thư mục Script mới nhất
-```text
-Assets/_Scripts
-|- Dungeon
-|  |- DungeonGenerator.cs (Kết hợp sinh phòng Boss & Shop)
-|  |- Room.cs (Tích hợp logic sương mù Minimap)
-|  |- RoomTrigger.cs
-|  |- EnemySpawner.cs
-|  |- Door.cs & BossDoorLock.cs
-|- Enemy
-|  |- EnemyBase.cs
-|  |- EnemyAI.cs
-|  |- EnemyBoss.cs
-|  |- EnemySkeleton1/2/3.cs
-|- Player
-|  |- Player.cs
-|  |- PlayerAttack.cs
-|  |- WeaponBase.cs (Base class)
-|  |- MeleeWeapon.cs & RangedWeapon.cs & FirePoint.cs
-|- Pathfinding
-|  |- Grid2D.cs & Node.cs & Pathfinding.cs
-|- Item
-|  |- Item.cs
-|  |- QuickItemBar.cs (Quản lý túi phụ)
-|  |- QuickItemSlotUI.cs
-|- Shop [MỚI]
-|  |- ShopManager.cs (Kho quản lý mua bán)
-|  |- ShopInteractable.cs (Điểm click chuột Trigger mở shop)
-|  |- ShopItemData.cs & ShopItemEffectApplier.cs
-|  |- ShopItemEntryUI.cs
-|- Audio [MỚI]
-|  |- AudioManager.cs
-|  |- AudioCueLibrary.cs
-|  |- AudioSettingsPanel.cs & UIButtonSound.cs
-|- GameManager
-   |- CameraManager.cs
-   |- MinimapCamera.cs [MỚI] (Cam phụ chiếu bản đồ nhỏ)
-   |- UIManagerImage.cs (class `UIManage`)
-   |- UIManagerButton.cs (class `UIManagerBottom`)
-   |- UIButtonMenu.cs
-```
+## 🚀 Tính năng chính (Core Features)
 
-## Quan hệ kế thừa (Inheritance)
-### Hướng tiếp cận cho Quái (Enemy)
-```text
-EnemyBase (Lớp Abstract)
-  -> EnemyAI (Logic tìm đường & Đánh)
-      -> EnemyBoss
-      -> EnemySkeleton1 / 2 / 3
-```
+- **Chiến đấu đa dạng:** Hệ thống vũ khí cận chiến (Melee) và tầm xa (Ranged) với cơ chế nhắm mục tiêu (Aiming) mượt mà.
+- **Hầm ngục ngẫu nhiên (Procedural Generation):** Các phòng (Rooms) được tạo và kết nối ngẫu nhiên mỗi lần chơi, bao gồm phòng quái vật, phòng shop, phòng Gacha và phòng Boss.
+- **Hệ thống Shop & Gacha:** Cho phép người chơi mua sắm vật phẩm và thử vận may để nhận được trang bị mạnh hơn.
+- **Giải đố (Puzzle System):** Tích hợp các câu đố mini-game để đa dạng hóa gameplay.
+- **Hệ thống Lưu trữ (Persistence):** Lưu lại Vàng, kỷ lục (Highscore) và tiến trình chơi thông qua hệ thống JSON Serialization.
+- **Cảm giác chơi (Game Feel):** Hiệu ứng rung màn hình (Screen Shake), Hitstop và âm thanh phản hồi sống động.
 
-### Hướng tiếp cận cho Vũ khí (Weapon)
-```text
-WeaponBase (Lớp Abstract)
-  -> MeleeWeapon (Vũ khí xáp lá cà)
-  -> RangedWeapon (Vũ khí đánh xa)
-```
+## 🛠️ Điểm nhấn Kỹ thuật (Technical Highlights)
 
-## Vai trò chi tiết của từng Script quan trọng
-### Dungeon (Hầm ngục)
-- `DungeonGenerator`: Sinh dungeon theo lưới ô vuông (grid). Rải phòng Start, phân bố các phòng thường, phòng Boss và phòng Shop riêng biệt, sau đó nối Collider của các Cửa (Door) lại với nhau.
-- `Room`: Quản lý trạng thái vòng chiến đấu. Đóng cửa khi có quái, mở cửa khi diệt xong toàn bộ quái vật nhánh. Tính năng Minimap tích hợp: giấu Icon của phòng trên Minimap cho đến khi người chơi bước qua khe cửa.
-- `RoomTrigger`: Trigger dùng để kích hoạt `Room.PlayerEntered()`.
+Dự án được xây dựng với tư duy lập trình bền vững và tối ưu hóa hiệu suất:
 
-### Shop & Item (Cửa hàng & Đồ vật)
-- `ShopManager`: Xử lý giao dịch. Trừ tiền `Player.gold`, chặn nếu không đủ tiền hoặc mua quá giới hạn. Đẩy vật phẩm mua thành công vào thanh `QuickItemBar`.
-- `ShopInteractable`: Trigger nhận tương tác chuột. Tính toán khoảng cách vật lý của người chơi để tránh tình trạng "mua đồ từ xa".
-- `QuickItemBar`: Thanh hotbar ở dưới màn hình để chứa các vật phẩm hồi phục dạng tiêu hao.
-- `Item`: Tiền vàng hoặc máu bị rớt ra từ quái (có script nam châm hút vào người chơi).
+### 1. Tối ưu hóa với Object Pooling
+Triển khai hệ thống **Generic Object Pooling** cho đạn, hiệu ứng hạt và kẻ địch. Điều này giúp giảm thiểu việc `Instantiate/Destroy` liên tục, ngăn chặn tình trạng giật lag do Garbage Collection (GC) gây ra.
 
-### Hệ thống Camera & Âm thanh
-- `MinimapCamera`: Nhìn từ trên cao xuống và render texture ra góc màn hình. Có tính năng bám đuổi mềm mại (Lerp) theo người chơi và tự động điều chỉnh ống kính to nhỏ.
-- `AudioManager`: Script Singleton lo mọi tín hiệu âm nhạc, từ mở khóa cửa, lụm tiền đến nhạc nền đổi tuỳ hứng. 
-- `CameraManager`: Đẩy camera nhảy (Snap) từng nấc theo từng ô phòng của Dungeon lúc di chuyển.
+### 2. Thiết kế hướng dữ liệu (Data-driven Design)
+Sử dụng **ScriptableObjects** để quản lý thông số kẻ địch, vũ khí và vật phẩm. Giúp việc cân bằng game (Balancing) trở nên dễ dàng hơn mà không cần can thiệp sâu vào mã nguồn.
 
-## Luồng hoạt động chính (Flow)
-### 1. Khởi tạo đầu game
-1. `DungeonGenerator.Start()` tạo chuỗi vòng lặp rải các căn phòng.
-2. Quét vị trí tạo thêm `ShopRoom` và kết nối nó vào luồng cửa như bình thường.
-3. Chỉnh tọa độ `CameraManager` và `MinimapCamera` đè chuẩn vào tâm Start Room để người chơi không bị lag góc nhìn.
+### 3. Kiến trúc Singleton & Quản lý tập trung
+Áp dụng **Singleton Pattern** cho các Manager cốt lõi như:
+- `AudioManager`: Quản lý tập trung âm thanh 2D/3D.
+- `SaveManager`: Xử lý I/O dữ liệu JSON.
+- `CameraManager`: Điều khiển chuyển động và hiệu ứng Camera.
+- `CorePoolManager`: Quản lý tài nguyên bộ nhớ.
 
-### 2. Giao tiếp khi Mua bán Đồ
-1. Khi tiếp cận thương nhân và click chuột, `ShopInteractable.OnMouseDown()` đo khoảng cách tới Player.
-2. Nếu đủ gần (< 5 Unit), gọi chéo sang `ShopManager.OpenShop()` làm đóng băng thời gian `Time.timeScale = 0`.
-3. Player click mua -> Mất vàng -> Nhận Effect hoặc được đẩy vật phẩm vào `QuickItemBar` để ấn phím dùng dần.
+### 4. Hệ thống Lưu trữ JSON
+Sử dụng thư viện `JsonUtility` của Unity để mã hóa dữ liệu thành file `.json`, đảm bảo tiến trình của người chơi được bảo toàn ngay cả khi thoát game đột ngột.
 
-### 3. Vòng lặp Hệ thống Bản đồ chìm (Minimap)
-1. Layer `Minimap` ban đầu bị Room khóa lại. Màn hình radar đen thui.
-2. Khi player đi xuyên cửa vào phòng mới, `RoomTrigger` bắt tín hiệu gửi chéo bật sáng Icon Map của phòng đó lên. Layer Minimap cập nhật hiển thị.
-3. Bản thân `MinimapCamera` lướt di chuyển song song ở bên trên cao bám theo tọa độ nhân vật chuẩn xác 1:1.
+## 📂 Cấu trúc thư mục (Folder Structure)
 
-## Ghi chú thiết kế hiện tại & Kỹ thuật cần lưu ý
-- Hiện trạng lỗi đặt tên còn xuất hiện:
-  - Text code ở file `UIManagerImage.cs` lại chứa class tên `UIManage`.
-  - Phím điều khiển `UIManagerButton.cs` chứa class tên `UIManagerBottom`.
-- Thuật toán A* hoàn toàn chạy tự đóng gói nội bộ không dùng NavMesh của Unity. `EnemyAI` lưu trữ tĩnh `cachedPlayer` để tránh hàm FindObjectByType lặp đi lặp lại. Giúp map rộng lên tới hàng trăm con quái không bị tụt FPS.
+- `_Scripts/Core`: Chứa các Manager chính và hệ thống nền tảng.
+- `_Scripts/Player`: Xử lý logic di chuyển, tấn công và trạng thái của người chơi.
+- `_Scripts/Enemy`: AI và logic hành vi của kẻ địch.
+- `_Scripts/Weapons`: Hệ thống vũ khí trừu tượng (Abstraction).
+- `_Scripts/Dungeon`: Logic tạo map và quản lý phòng.
+- `_Prefabs`: Các đối tượng đã được đóng gói sẵn để tái sử dụng.
+
+## 🎮 Hướng dẫn điều khiển (Controls)
+
+- **WASD:** Di chuyển nhân vật.
+- **Chuột trái:** Tấn công / Bắn súng.
+- **Chuột phải (Dự kiến):** Dash (Lướt né đòn).
+- **E:** Tương tác với Shop/Gacha/Cửa.
+- **Esc:** Tạm dừng / Mở Menu.
+
+## 🛠️ Cài đặt (Installation)
+
+1. Clone repository này về máy.
+2. Mở dự án bằng **Unity 2021.3 (LTS)** hoặc phiên bản mới hơn.
+3. Mở cảnh `Menu` trong thư mục `Scenes` và nhấn Play.
+
+---
+*Dự án được phát triển bởi **Trung Đức** - Với mục tiêu học hỏi và áp dụng các kỹ thuật lập trình Game chuyên nghiệp.*
