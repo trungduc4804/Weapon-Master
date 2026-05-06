@@ -147,5 +147,5 @@ MonoBehaviour:
     outputGroup: {fileID: 0}
   projectilePrefab: {fileID: 881566389789365732, guid: 3113a493efe922c46a31eba712747c18, type: 3}
   firePoint: {fileID: 8553316431491918961}
-  projectileSpeed: 10
+  projectileSpeed: 30
   delayBetweenShots: 0.5

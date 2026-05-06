@@ -32,8 +32,11 @@ public class FirePoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // BỎ QUA các vùng kích hoạt (Trigger) HOẶC va chạm với chính Player
-        if (collision.isTrigger || collision.CompareTag("Player"))
+        // Nếu là Player thì luôn bỏ qua
+        if (collision.CompareTag("Player")) return;
+
+        // Nếu là Trigger thì bỏ qua, TRỪ KHI đó là Enemy
+        if (collision.isTrigger && !collision.CompareTag("Enemy"))
         {
             return;
         }
